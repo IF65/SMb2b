@@ -12,6 +12,8 @@
 		9CAC06A41F97DB0400605105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CAC06A21F97DB0400605105 /* Main.storyboard */; };
 		9CAC06A61F97DB0400605105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CAC06A51F97DB0400605105 /* Assets.xcassets */; };
 		9CAC06A91F97DB0400605105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CAC06A71F97DB0400605105 /* LaunchScreen.storyboard */; };
+		9CAC06B11F97E02900605105 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC06B01F97E02900605105 /* DataModel.swift */; };
+		9CAC06B51F97F06B00605105 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		9CAC06A51F97DB0400605105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CAC06A81F97DB0400605105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CAC06AA1F97DB0400605105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CAC06B01F97E02900605105 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +60,12 @@
 			children = (
 				9CAC069E1F97DB0400605105 /* AppDelegate.swift */,
 				9CAC06A01F97DB0400605105 /* ViewController.swift */,
+				9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
 				9CAC06A51F97DB0400605105 /* Assets.xcassets */,
 				9CAC06A71F97DB0400605105 /* LaunchScreen.storyboard */,
 				9CAC06AA1F97DB0400605105 /* Info.plist */,
+				9CAC06B01F97E02900605105 /* DataModel.swift */,
 			);
 			path = SMb2b;
 			sourceTree = "<group>";
@@ -138,6 +144,8 @@
 			files = (
 				9CAC06A11F97DB0400605105 /* ViewController.swift in Sources */,
 				9CAC069F1F97DB0400605105 /* AppDelegate.swift in Sources */,
+				9CAC06B51F97F06B00605105 /* CollectionViewCell.swift in Sources */,
+				9CAC06B11F97E02900605105 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

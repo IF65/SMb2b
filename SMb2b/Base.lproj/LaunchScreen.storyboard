@@ -1,25 +1,66 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="EHf-IW-A2E">
+        <!--Navigation Controller-->
+        <scene sceneID="r9C-FZ-vjG">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                <navigationController id="CID-dI-koF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yud-G0-IOq">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LQu-Uc-Lda" kind="relationship" relationship="rootViewController" id="mcJ-Yc-vsh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rjn-jf-77e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1358" y="375"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="M4x-gr-vyt">
+            <objects>
+                <viewController id="LQu-Uc-Lda" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cdN-db-1Qi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iW-fA-5CO">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="ROQ-n1-8a3"/>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pWV-ST-21U">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VGN-bh-V8X" firstAttribute="bottom" secondItem="3iW-fA-5CO" secondAttribute="bottom" id="1vy-oU-rF3"/>
+                            <constraint firstAttribute="trailing" secondItem="3iW-fA-5CO" secondAttribute="trailing" id="520-5c-3at"/>
+                            <constraint firstItem="3iW-fA-5CO" firstAttribute="top" secondItem="pWV-ST-21U" secondAttribute="bottom" id="5R7-zS-eYW"/>
+                            <constraint firstItem="3iW-fA-5CO" firstAttribute="leading" secondItem="VGN-bh-V8X" secondAttribute="leading" id="Cbc-Lu-VpE"/>
+                            <constraint firstAttribute="trailing" secondItem="pWV-ST-21U" secondAttribute="trailing" id="JpB-bn-E0g"/>
+                            <constraint firstItem="pWV-ST-21U" firstAttribute="top" secondItem="VGN-bh-V8X" secondAttribute="top" id="S1D-Hy-Xmy"/>
+                            <constraint firstItem="pWV-ST-21U" firstAttribute="leading" secondItem="VGN-bh-V8X" secondAttribute="leading" id="kZQ-UV-Dzl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VGN-bh-V8X"/>
                     </view>
+                    <navigationItem key="navigationItem" id="mbX-Bv-FCn"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3x7-0Z-N1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="-281" y="375"/>
         </scene>
     </scenes>
 </document>
