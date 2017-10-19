@@ -10,7 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var topAuxiliaryPanel: UIView!
+    @IBOutlet weak var topCollectionView: UICollectionView!
+    
     var clienti = [Cliente]()
+
+
     var periodo = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19"]
     
     override func viewDidLoad() {
@@ -19,6 +24,12 @@ class ViewController: UIViewController {
         clienti.append(Cliente(codice: "EPRICE", descrizione: "ePrice"))
         clienti.append(Cliente(codice: "ONLINESTORE", descrizione: "Online Store"))
         clienti.append(Cliente(codice: "TEKWORLD", descrizione: "Tekworld"))
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.red
+        
+        topAuxiliaryPanel.layer.backgroundColor = UIColor.white.cgColor
+        topCollectionView.layer.backgroundColor = UIColor.white.cgColor
+        topCollectionView.showsHorizontalScrollIndicator = false
         
     }
 
@@ -38,7 +49,7 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CollectionViewCell
         
-        cell.layer.backgroundColor = UIColor.red.cgColor
+        cell.layer.backgroundColor = UIColor.white.cgColor
         cell.etichettaGiorno.text = periodo[indexPath.row]
         
         return cell
