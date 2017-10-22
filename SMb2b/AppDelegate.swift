@@ -12,10 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /*let smPurple = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
+        let attributes = [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)]
+        
+        UINavigationBar.appearance().barTintColor = smPurple
+        UINavigationBar.appearance().titleTextAttributes = attributes*/
+        
         return true
     }
 

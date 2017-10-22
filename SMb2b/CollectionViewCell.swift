@@ -11,5 +11,8 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var etichettaGiorno: UILabel!
-    
+    @IBOutlet weak var etichettaGiornoDellaSettimana: UILabel!
+    @IBOutlet weak var etichettaMese: UILabel!
+    @IBOutlet weak var boxInterno: UIView!
+    @IBOutlet weak var boxInternoTopBar: UIView!
 }

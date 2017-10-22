@@ -9,6 +9,9 @@
 import Foundation
 
 
+var weekDayShort = [0:"Lun",1:"Mar",2:"Mer",3:"Gio",4:"Ven",5:"Sab",6:"Dom"]
+
+
 class Cliente {
     var codice: String
     var descrizione: String
