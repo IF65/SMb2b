@@ -14,6 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var topCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var totalPanel: UIView!
+    @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var margine: UILabel!
+    @IBOutlet weak var totale: UILabel!
+    
     // selezione corrente
     var selectedDateIndex: Int = 0
     
@@ -76,6 +81,7 @@ class ViewController: UIViewController {
             }
         }
         
+        //Inizializzazione interfaccia
         self.navigationController?.navigationBar.topItem?.title = "Supermedia S.p.A."
         
         topCollectionView.scrollToItem(at: IndexPath(item: selectedDateIndex, section: 0), at: .centeredHorizontally, animated: false)
@@ -88,9 +94,12 @@ class ViewController: UIViewController {
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
         
-        
         collectionViewPanel.layer.borderColor = UIColor.lightGray.cgColor
         collectionViewPanel.layer.borderWidth = 0.5
+        
+        totalPanel.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1).cgColor
+        totalPanel.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        totalPanel.layer.borderWidth = 0.5
     }
     
     override func didReceiveMemoryWarning() {
@@ -209,20 +218,26 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         searchResults.results = []
         
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let url = URL(string: String(format:"http://10.11.14.78/copre/copre2.php", encodedText))
+        let url = URL(string: String(format:"http://11.0.1.31:8080/b2b", encodedText))
         
         do {
-            let searchRequest = SearchRequestTabulatoCopre()
-            searchRequest.functionName = "tabulatoCopre"
             
-            searchRequest.descrizione = searchText
-    
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "it_IT")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            let searchRequest = SearchRequest()
+            searchRequest.funzione = "totaleOrdiniPerCliente"
+            searchRequest.dallaData = dateFormatter.string(from:  periodo[selectedDateIndex])
+            searchRequest.allaData = dateFormatter.string(from:  periodo[selectedDateIndex])
+            
             let encoder = JSONEncoder()
             let searchRequestBody = try encoder.encode(searchRequest)
             
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
-            request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("totaleOrdiniPerCliente", forHTTPHeaderField: "funzione")
             request.httpBody = searchRequestBody
             
             let session = URLSession.shared
@@ -235,7 +250,27 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                     
                     if let data = data {
                         self.searchResults = self.parse(data: data)!
+ 
                         DispatchQueue.main.async {
+                            let currencyFormatter = NumberFormatter()
+                            currencyFormatter.usesGroupingSeparator = true
+                            currencyFormatter.numberStyle = NumberFormatter.Style.decimal
+                            currencyFormatter.minimumFractionDigits = 0
+                            currencyFormatter.maximumFractionDigits = 0
+                            currencyFormatter.locale = NSLocale.current
+                            
+                            var count = 0
+                            var margine = 0.0
+                            var totale = 0.0
+                            for riga in self.searchResults.results {
+                                count += riga.count
+                                margine += riga.margine
+                                totale += riga.totale
+                            }
+                            
+                            self.count.text = currencyFormatter.string(from: count as NSNumber)!
+                            self.margine.text = currencyFormatter.string(from: margine as NSNumber)!
+                            self.totale.text = currencyFormatter.string(from: totale as NSNumber)!
                             self.isLoading = false
                             self.tableView.reloadData()
                         }
@@ -294,8 +329,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
             
-            cell.descrizione.text = searchResults.results[indexPath.row].descrizione.capitalized
-            cell.descrizione.sizeToFit()
+            
+            let currencyFormatter = NumberFormatter()
+            currencyFormatter.usesGroupingSeparator = true
+            currencyFormatter.numberStyle = NumberFormatter.Style.decimal
+            currencyFormatter.minimumFractionDigits = 0
+            currencyFormatter.maximumFractionDigits = 0
+            currencyFormatter.locale = NSLocale.current
+            
+            cell.cliente.text = searchResults.results[indexPath.row].codiceCliente.capitalized
+            cell.count.text = String(searchResults.results[indexPath.row].count)
+            cell.margine.text = currencyFormatter.string(from: searchResults.results[indexPath.row].margine as NSNumber)!
+            cell.totale.text = currencyFormatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!
+            
+            cell.cliente.sizeToFit()
+            cell.totale.sizeToFit()
+            cell.margine.sizeToFit()
+            cell.count.sizeToFit()
             
             return cell
         }
