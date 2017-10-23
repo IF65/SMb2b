@@ -69,10 +69,7 @@
 				9CAC069E1F97DB0400605105 /* AppDelegate.swift */,
 				9CAC06A01F97DB0400605105 /* ViewController.swift */,
 				9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */,
-				9CE4F9211F9D3FC800C731FB /* SearchResultCell.xib */,
-				9CE4F9231F9D3FF000C731FB /* SearchResultCell.swift */,
-				9CE4F9251F9D409800C731FB /* NothingFoundCell.xib */,
-				9CE4F9271F9D40A700C731FB /* LoadingCell.xib */,
+				9CE4F9291F9D48F700C731FB /* Tabella Ordini */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
 				9CAC06A51F97DB0400605105 /* Assets.xcassets */,
 				9CAC06A71F97DB0400605105 /* LaunchScreen.storyboard */,
@@ -80,6 +77,17 @@
 				9CAC06B01F97E02900605105 /* DataModel.swift */,
 			);
 			path = SMb2b;
+			sourceTree = "<group>";
+		};
+		9CE4F9291F9D48F700C731FB /* Tabella Ordini */ = {
+			isa = PBXGroup;
+			children = (
+				9CE4F9211F9D3FC800C731FB /* SearchResultCell.xib */,
+				9CE4F9231F9D3FF000C731FB /* SearchResultCell.swift */,
+				9CE4F9251F9D409800C731FB /* NothingFoundCell.xib */,
+				9CE4F9271F9D40A700C731FB /* LoadingCell.xib */,
+			);
+			path = "Tabella Ordini";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

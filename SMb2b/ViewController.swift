@@ -10,9 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var topAuxiliaryPanel: UIView!
+    @IBOutlet weak var collectionViewPanel: UIView!
     @IBOutlet weak var topCollectionView: UICollectionView!
-    @IBOutlet weak var bottomAuxiliaryPanel: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     // selezione corrente
@@ -30,51 +29,6 @@ class ViewController: UIViewController {
     var searchResults = ResultArray()
     var isLoading = false
     var hasSearched = false
-    var activeFilter = 0
-    
-    //MARK:- Private functions
-    func parse(data: Data, andSortBy activeFilter: Int) -> ResultArray? {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from: data)
-            //print(result.resultCount)
-            
-            switch activeFilter {
-            case 0: result.results.sort(by: { result1, result2 in
-                return result1.descrizione.localizedStandardCompare(
-                    result2.descrizione) == .orderedAscending
-            })
-            case 1: result.results.sort(by: { result1, result2 in
-                return result1.modello.localizedStandardCompare(
-                    result2.modello) == .orderedAscending
-            })
-            case 2: result.results.sort(by: { result1, result2 in
-                return result1.codice.localizedStandardCompare(
-                    result2.codice) == .orderedAscending
-            })
-            case 3: result.results.sort(by: { result1, result2 in
-                return result1.descrizione.localizedStandardCompare(
-                    result2.descrizione) == .orderedAscending
-            })
-            default: result.results.sort(by: { result1, result2 in
-                return result1.descrizione.localizedStandardCompare(
-                    result2.descrizione) == .orderedAscending
-            })
-            }
-            
-            return result
-        } catch {
-            print("JSON Error \(error)")
-            return nil
-        }
-    }
-    
-    func showNetworkError() {
-        let alert = UIAlertController(title: "Errore di rete...", message: "C'è stato un errore nel tentativo di accesso al server b2b di Supermedia S.p.A. . Riprova.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,11 +87,35 @@ class ViewController: UIViewController {
         tableView.register(cellNib, forCellReuseIdentifier: "LoadingCell")
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
+        
+        
+        collectionViewPanel.layer.borderColor = UIColor.lightGray.cgColor
+        collectionViewPanel.layer.borderWidth = 0.5
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK:- Private functions
+    private func parse(data: Data) -> ResultArray? {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            
+            return result
+        } catch {
+            print("JSON Error \(error)")
+            return nil
+        }
+    }
+    
+    private func showNetworkError() {
+        let alert = UIAlertController(title: "Errore di rete...", message: "C'è stato un errore nel tentativo di accesso al server b2b di Supermedia S.p.A. . Riprova.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     private func stringToDate(_ dateString:String) -> Date? {
@@ -151,6 +129,7 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK:- Collection View
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return periodo.count
@@ -255,7 +234,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                     httpResponse.statusCode == 200 {
                     
                     if let data = data {
-                        self.searchResults = self.parse(data: data, andSortBy: self.activeFilter)!
+                        self.searchResults = self.parse(data: data)!
                         DispatchQueue.main.async {
                             self.isLoading = false
                             self.tableView.reloadData()
@@ -282,6 +261,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 }
 
+//MARK:- Table View
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -315,22 +295,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
             
             cell.descrizione.text = searchResults.results[indexPath.row].descrizione.capitalized
-            cell.marchio.text = (searchResults.results[indexPath.row].marchioCopre+" ("+searchResults.results[indexPath.row].marchio+")").capitalized
-            cell.modello.text = searchResults.results[indexPath.row].modello
-            cell.codice.text = "cod.: " + String(searchResults.results[indexPath.row].codice)
-            cell.netto.text = "netto: " + String(format: "%.2f", searchResults.results[indexPath.row].nettoNetto)
-            cell.giacenza.text = "giac.: " + String(format: "%d", searchResults.results[indexPath.row].giacenza)
-            
             cell.descrizione.sizeToFit()
-            cell.marchio.sizeToFit()
-            cell.modello.sizeToFit()
-            cell.codice.sizeToFit()
-            cell.netto.sizeToFit()
-            cell.giacenza.sizeToFit()
-            
-            //cell.circleView.borderWidth = 2
-            cell.circleView.layer.backgroundColor = UIColor.white.cgColor
-            cell.circleView.layer.borderColor = UIColor.black.withAlphaComponent(0.6).cgColor
             
             return cell
         }

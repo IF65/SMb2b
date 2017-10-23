@@ -23,13 +23,6 @@ class SearchResultCell: UITableViewCell {
 
     }
     
-    @IBOutlet weak var modello: UILabel!
-    @IBOutlet weak var codice: UILabel!
-    @IBOutlet weak var netto: UILabel!
     @IBOutlet weak var descrizione: UILabel!
-    @IBOutlet weak var marchio: UILabel!
-    @IBOutlet weak var giacenza: UILabel!
-    
-    @IBOutlet weak var circleView: UIView!
     
 }
