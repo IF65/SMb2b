@@ -227,7 +227,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jmf-19-0Z2"/>
+                    <navigationItem key="navigationItem" id="jmf-19-0Z2">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="list" id="nlk-2h-5JU">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="calendar" image="calendar" id="gsu-ad-Kul">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionViewPanel" destination="zBn-aa-zry" id="sRI-bV-pUE"/>
                         <outlet property="count" destination="M93-Io-CIn" id="yX9-md-mDB"/>
@@ -299,7 +306,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="P4e-K7-JDA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lx8-CI-85i">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -318,4 +324,8 @@
             <point key="canvasLocation" x="79" y="125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar" width="26" height="28"/>
+        <image name="list" width="19" height="15"/>
+    </resources>
 </document>
