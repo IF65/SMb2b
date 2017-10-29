@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     var selectedDateIndex: Int = 0
     
     // colors
+    let blueSM = UIColor(red: 0.0, green: 85/255, blue: 145/255, alpha: 1)
+    let purpleSM = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
     let darkGreen = UIColor(red: 0, green: 102/255, blue: 51/255, alpha: 1)
     let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 1.0)
     
@@ -78,7 +80,12 @@ class ViewController: UIViewController {
         }
         
         //Inizializzazione interfaccia
-        self.navigationController?.navigationBar.topItem?.title = "Supermedia S.p.A."
+        //self.navigationController?.navigationBar.topItem?.title = "Supermedia S.p.A."
+        let logo = UIImage(named: "logoSM_T2.png")
+        let imageView = UIImageView(image: logo)
+        imageView.contentMode = .scaleAspectFit// set imageview's content mode
+        self.navigationItem.titleView = imageView
+        
         
         var cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SearchResultCell")
@@ -157,16 +164,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CollectionViewCell
         
         if indexPath.row == selectedDateIndex {
-            cell.barraSelezione.backgroundColor = UIColor.red
+            cell.barraSelezione.backgroundColor = purpleSM
             cell.boxInterno.backgroundColor = UIColor.lightGray.withAlphaComponent(0.01)
         } else {
             cell.barraSelezione.backgroundColor = UIColor.white
         }
         
         if Calendar.current.component(.weekday, from: periodo[indexPath.row]) == 1 {
-            cell.boxInternoTopBar.layer.backgroundColor = UIColor.red.cgColor
+            cell.boxInternoTopBar.layer.backgroundColor = purpleSM.cgColor
         } else {
-            cell.boxInternoTopBar.layer.backgroundColor = darkGreen.cgColor
+            cell.boxInternoTopBar.layer.backgroundColor = blueSM.cgColor
         }
         
         let dateFormatter = DateFormatter()
@@ -350,3 +357,4 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         destinationViewController.dataSelezionata = periodo[selectedDateIndex]
     }
 }
+
