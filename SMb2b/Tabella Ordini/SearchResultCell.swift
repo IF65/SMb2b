@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchResultCell: UITableViewCell {
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,9 +22,7 @@ class SearchResultCell: UITableViewCell {
     }
     
     @IBOutlet weak var cliente: UILabel!
-    @IBOutlet weak var count: UILabel!
-    @IBOutlet weak var margine: UILabel!
     @IBOutlet weak var totale: UILabel!
-    
+    @IBOutlet weak var descrizione: UILabel!
     
 }

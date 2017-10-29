@@ -26,10 +26,6 @@ class ViewController: UIViewController {
     let darkGreen = UIColor(red: 0, green: 102/255, blue: 51/255, alpha: 1)
     let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 1.0)
     
-    // dati
-    var clienti = [Cliente]()
-    var periodo = [Date]()
-    
     var dataTask: URLSessionDataTask?
     var searchResults = ResultArray()
     var isLoading = false
@@ -84,9 +80,6 @@ class ViewController: UIViewController {
         //Inizializzazione interfaccia
         self.navigationController?.navigationBar.topItem?.title = "Supermedia S.p.A."
         
-        topCollectionView.scrollToItem(at: IndexPath(item: selectedDateIndex, section: 0), at: .centeredHorizontally, animated: false)
-        topCollectionView.reloadData()
-        
         var cellNib = UINib(nibName: "SearchResultCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SearchResultCell")
         cellNib = UINib(nibName: "LoadingCell", bundle: nil)
@@ -100,6 +93,12 @@ class ViewController: UIViewController {
         totalPanel.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1).cgColor
         totalPanel.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         totalPanel.layer.borderWidth = 0.5
+        
+        performSearch()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        topCollectionView.scrollToItem(at: IndexPath(item: selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -147,41 +146,17 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CollectionViewCell
         
-        cell.layer.backgroundColor = UIColor.white.cgColor
-        
-        cell.boxInterno.layer.cornerRadius = 4.0
-        cell.boxInterno.layer.borderColor = UIColor.lightGray.cgColor
-        cell.boxInterno.layer.borderWidth = 0.5
-        cell.boxInterno.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
-        cell.boxInterno.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.boxInterno.layer.shadowOpacity = 1
-        cell.boxInterno.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        cell.boxInterno.layer.shadowRadius = 2
-        
-        cell.boxInterno.layer.backgroundColor = UIColor.white.cgColor
-        
-        //cell.boxInterno.layer.shadowPath = UIBezierPath(rect: cell.boxInterno.bounds).cgPath
-        //cell.boxInterno.layer.shouldRasterize = true
-        
-        cell.boxInternoTopBar.layer.cornerRadius = 4.0
-        cell.boxInternoTopBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
         if indexPath.row == selectedDateIndex {
-            cell.boxInternoTopBar.layer.backgroundColor = UIColor.blue.cgColor
-            cell.etichettaGiornoDellaSettimana.textColor = UIColor.white
-            cell.etichettaMese.textColor = UIColor.blue
-            cell.etichettaGiorno.textColor = UIColor.blue
+            cell.barraSelezione.backgroundColor = UIColor.red
+            cell.boxInterno.backgroundColor = UIColor.lightGray.withAlphaComponent(0.01)
         } else {
-            cell.etichettaGiorno.textColor = UIColor.black
-            cell.etichettaMese.textColor = UIColor.black
-            if Calendar.current.component(.weekday, from: periodo[indexPath.row]) == 1 {
-                cell.boxInternoTopBar.layer.backgroundColor = UIColor.red.cgColor
-                cell.etichettaGiornoDellaSettimana.textColor = UIColor.white
-            } else {
-                cell.boxInternoTopBar.layer.backgroundColor = darkGreen.cgColor
-                cell.etichettaGiornoDellaSettimana.textColor = UIColor.white
-            }
+            cell.barraSelezione.backgroundColor = UIColor.white
+        }
+        
+        if Calendar.current.component(.weekday, from: periodo[indexPath.row]) == 1 {
+            cell.boxInternoTopBar.layer.backgroundColor = UIColor.red.cgColor
+        } else {
+            cell.boxInternoTopBar.layer.backgroundColor = darkGreen.cgColor
         }
         
         let dateFormatter = DateFormatter()
@@ -208,8 +183,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     
-    func performSearch() {
-        let searchText = "LAVATRICE"
+    public func performSearch() {
         dataTask?.cancel()
         hasSearched = true
         isLoading = true
@@ -217,8 +191,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         searchResults.results = []
         
-        let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let url = URL(string: String(format:"http://11.0.1.31:8080/b2b", encodedText))
+        let url = URL(string: "http://11.0.1.31:8080/b2b")
         
         do {
             
@@ -250,7 +223,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                     
                     if let data = data {
                         self.searchResults = self.parse(data: data)!
- 
+                        
                         DispatchQueue.main.async {
                             let currencyFormatter = NumberFormatter()
                             currencyFormatter.usesGroupingSeparator = true
@@ -337,17 +310,31 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             currencyFormatter.maximumFractionDigits = 0
             currencyFormatter.locale = NSLocale.current
             
+            let count = String(searchResults.results[indexPath.row].count)
+            let margine = currencyFormatter.string(from: searchResults.results[indexPath.row].margine as NSNumber)!
+            
             cell.cliente.text = searchResults.results[indexPath.row].codiceCliente.capitalized
-            cell.count.text = String(searchResults.results[indexPath.row].count)
-            cell.margine.text = currencyFormatter.string(from: searchResults.results[indexPath.row].margine as NSNumber)!
+            cell.descrizione.text = "\(count) ordine/i per \(margine) \(currencyFormatter.currencySymbol!) di margine."
             cell.totale.text = currencyFormatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!
             
             cell.cliente.sizeToFit()
+            cell.descrizione.sizeToFit()
             cell.totale.sizeToFit()
-            cell.margine.sizeToFit()
-            cell.count.sizeToFit()
             
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "elencoOrdini", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        let destinationViewController = segue.destination as! ViewControllerOrdini
+        destinationViewController.clienteSelezionato = "EPRICE"
+        destinationViewController.dataSelezionata = periodo[selectedDateIndex]
     }
 }

@@ -9,6 +9,10 @@
 import Foundation
 
 
+// dati
+var clienti = [Cliente]()
+var periodo = [Date]()
+
 var weekDayShort = [0:"Lun",1:"Mar",2:"Mer",3:"Gio",4:"Ven",5:"Sab",6:"Dom"]
 
 

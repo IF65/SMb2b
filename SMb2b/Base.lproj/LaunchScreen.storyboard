@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CID-dI-koF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1E3-XW-P7n">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,53 +9,32 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="r9C-FZ-vjG">
-            <objects>
-                <navigationController toolbarHidden="NO" id="CID-dI-koF" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yud-G0-IOq">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sYk-7X-rWr">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="LQu-Uc-Lda" kind="relationship" relationship="rootViewController" id="mcJ-Yc-vsh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rjn-jf-77e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1358" y="375"/>
-        </scene>
         <!--View Controller-->
-        <scene sceneID="M4x-gr-vyt">
+        <scene sceneID="vKN-6y-YoQ">
             <objects>
-                <viewController id="LQu-Uc-Lda" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cdN-db-1Qi">
+                <viewController id="1E3-XW-P7n" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Xs-dj-RR3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pWV-ST-21U">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logob2b" translatesAutoresizingMaskIntoConstraints="NO" id="d1Z-jj-i9s">
+                                <rect key="frame" x="129.5" y="315.5" width="115" height="35"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pWV-ST-21U" firstAttribute="trailing" secondItem="VGN-bh-V8X" secondAttribute="trailing" id="9cO-0H-Ufy"/>
-                            <constraint firstItem="VGN-bh-V8X" firstAttribute="bottom" secondItem="pWV-ST-21U" secondAttribute="bottom" id="Tcx-EQ-U8E"/>
-                            <constraint firstItem="pWV-ST-21U" firstAttribute="top" secondItem="VGN-bh-V8X" secondAttribute="top" id="heG-mU-gEj"/>
-                            <constraint firstItem="pWV-ST-21U" firstAttribute="leading" secondItem="VGN-bh-V8X" secondAttribute="leading" id="iEy-OO-Gqx"/>
+                            <constraint firstItem="d1Z-jj-i9s" firstAttribute="centerX" secondItem="7Xs-dj-RR3" secondAttribute="centerX" id="93a-6z-iAf"/>
+                            <constraint firstItem="d1Z-jj-i9s" firstAttribute="centerY" secondItem="7Xs-dj-RR3" secondAttribute="centerY" id="nKy-Be-m9G"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="VGN-bh-V8X"/>
+                        <viewLayoutGuide key="safeArea" id="0DE-Bv-BuA"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mbX-Bv-FCn"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3x7-0Z-N1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgT-fh-1NU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-281" y="375"/>
+            <point key="canvasLocation" x="-702" y="218"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logob2b" width="115" height="35"/>
+    </resources>
 </document>
