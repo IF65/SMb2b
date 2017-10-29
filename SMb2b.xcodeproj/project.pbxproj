@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4501CB1FA64E1300DD563C /* CollectionWeakViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4501CA1FA64E1300DD563C /* CollectionWeakViewCell.swift */; };
 		9CAC069F1F97DB0400605105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC069E1F97DB0400605105 /* AppDelegate.swift */; };
 		9CAC06A11F97DB0400605105 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC06A01F97DB0400605105 /* ViewController.swift */; };
 		9CAC06A41F97DB0400605105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CAC06A21F97DB0400605105 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C4501CA1FA64E1300DD563C /* CollectionWeakViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionWeakViewCell.swift; sourceTree = "<group>"; };
 		9CAC069B1F97DB0400605105 /* SMb2b.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMb2b.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAC069E1F97DB0400605105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CAC06A01F97DB0400605105 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				9CAC069E1F97DB0400605105 /* AppDelegate.swift */,
 				9CAC06A01F97DB0400605105 /* ViewController.swift */,
 				9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */,
+				9C4501CA1FA64E1300DD563C /* CollectionWeakViewCell.swift */,
 				9CE4F9291F9D48F700C731FB /* Tabella Ordini */,
 				C9B1C1A21F9F611D000FAEC7 /* ViewControllerOrdini.swift */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
@@ -173,6 +176,7 @@
 				9CAC069F1F97DB0400605105 /* AppDelegate.swift in Sources */,
 				9CAC06B51F97F06B00605105 /* CollectionViewCell.swift in Sources */,
 				9CAC06B11F97E02900605105 /* DataModel.swift in Sources */,
+				9C4501CB1FA64E1300DD563C /* CollectionWeakViewCell.swift in Sources */,
 				9CE4F9241F9D3FF000C731FB /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
