@@ -97,8 +97,18 @@ class ViewController: UIViewController {
         performSearch()
     }
     
-    override func viewDidLayoutSubviews() {
+    /*override func viewDidLayoutSubviews() {
         topCollectionView.scrollToItem(at: IndexPath(item: selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
+    }*/
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animateAlongsideTransition(in: nil, animation: nil) {
+            (context) -> Void in
+            self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
+            return
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -183,7 +193,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     
-    public func performSearch() {
+    func performSearch() {
         dataTask?.cancel()
         hasSearched = true
         isLoading = true
@@ -245,6 +255,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                             self.margine.text = currencyFormatter.string(from: margine as NSNumber)!
                             self.totale.text = currencyFormatter.string(from: totale as NSNumber)!
                             self.isLoading = false
+                            self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
                             self.tableView.reloadData()
                         }
                         return
@@ -258,6 +269,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                     self.hasSearched = false
                     self.isLoading = false
                     self.tableView.reloadData()
+                    self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
                     self.showNetworkError()
                 }
                 

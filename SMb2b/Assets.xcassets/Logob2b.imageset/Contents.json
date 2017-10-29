@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Supermedia-1.png",
+      "filename" : "logoB2b-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Supermedia.png",
+      "filename" : "logoB2b.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Supermedia-2.png",
+      "filename" : "logoB2b-2.png",
       "scale" : "3x"
     }
   ],
