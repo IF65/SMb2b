@@ -227,7 +227,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weakCell", for: indexPath) as! CollectionWeakViewCell
             
-            if indexPath.row == selectedDateIndex {
+            if indexPath.row == selectedWeekIndex {
                 cell.barraSelezione.backgroundColor = purpleSM
                 cell.boxInterno.backgroundColor = UIColor.lightGray.withAlphaComponent(0.01)
             } else {
@@ -259,7 +259,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if tipoCalendario == .giorno {
-            selectedDateIndex = indexPath.row
+            selectedDateIndex = indexPath.row - 1
             selectedWeekIndex = Calendar.current.component(.weekOfYear, from: periodo[selectedDateIndex]) - 1
         } else {
             selectedDateIndex = settimane[indexPath.row].index
