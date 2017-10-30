@@ -131,8 +131,8 @@ class ViewController: UIViewController {
         collectionViewPanel.layer.borderColor = UIColor.lightGray.cgColor
         collectionViewPanel.layer.borderWidth = 0.5
         
-        totalPanel.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1).cgColor
-        totalPanel.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        totalPanel.layer.backgroundColor = UIColor.white.cgColor;//UIColor.lightGray.withAlphaComponent(0.1).cgColor
+        totalPanel.layer.borderColor = UIColor.lightGray.cgColor
         totalPanel.layer.borderWidth = 0.5
         
         performSearch()
@@ -201,15 +201,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if tipoCalendario == .giorno {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CollectionViewCell
-            if indexPath.row == selectedDateIndex {
-                cell.barraSelezione.backgroundColor = purpleSM
-                cell.boxInterno.backgroundColor = UIColor.lightGray.withAlphaComponent(0.01)
-            } else {
-                cell.barraSelezione.backgroundColor = UIColor.white
-            }
             
-            if Calendar.current.component(.weekday, from: periodo[indexPath.row]) == 1 {
-                cell.boxInternoTopBar.layer.backgroundColor = purpleSM.cgColor
+            if indexPath.row == selectedDateIndex {
+                cell.boxInternoTopBar.backgroundColor = purpleSM
             } else {
                 cell.boxInternoTopBar.layer.backgroundColor = blueSM.cgColor
             }
@@ -228,13 +222,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weakCell", for: indexPath) as! CollectionWeakViewCell
             
             if indexPath.row == selectedWeekIndex {
-                cell.barraSelezione.backgroundColor = purpleSM
-                cell.boxInterno.backgroundColor = UIColor.lightGray.withAlphaComponent(0.01)
+                cell.boxInternoTopBar.backgroundColor = purpleSM
             } else {
-                cell.barraSelezione.backgroundColor = UIColor.white
+                cell.boxInternoTopBar.layer.backgroundColor = blueSM.cgColor
             }
-            
-            cell.boxInternoTopBar.layer.backgroundColor = blueSM.cgColor
             
             cell.etichettaNumeroSettimana.text = "Settimana n.\(settimane[indexPath.row].numero)"
             
@@ -450,10 +441,10 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let height: Int
         if tipoCalendario == .giorno {
             width = 60
-            height = 62
+            height = 60
         } else {
-            width = 130
-            height = 62
+            width = 120
+            height = 60
         }
         return CGSize(width: width, height: height)
     }
