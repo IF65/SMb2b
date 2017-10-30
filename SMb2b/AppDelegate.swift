@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = smPurple
         UINavigationBar.appearance().titleTextAttributes = attributes*/
         
+        Thread.sleep(forTimeInterval: 3.0)
+        
         return true
     }
 

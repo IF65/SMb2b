@@ -98,7 +98,7 @@ class ViewController: UIViewController {
             //print(date!)
             if date!.compare(currentDate!) == .orderedSame {
                 selectedDateIndex = periodo.count
-                selectedWeekIndex = Calendar.current.component(.weekOfYear, from: periodo[selectedDateIndex - 1]) - 1
+                selectedWeekIndex = Calendar.current.component(.weekOfYear, from: periodo[selectedDateIndex - 1])
             }
             
             //settimana
@@ -259,7 +259,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if tipoCalendario == .giorno {
-            selectedDateIndex = indexPath.row - 1
+            selectedDateIndex = indexPath.row
             selectedWeekIndex = Calendar.current.component(.weekOfYear, from: periodo[selectedDateIndex]) - 1
         } else {
             selectedDateIndex = settimane[indexPath.row].index

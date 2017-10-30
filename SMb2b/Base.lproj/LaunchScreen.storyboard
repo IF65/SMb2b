@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoSM_T" translatesAutoresizingMaskIntoConstraints="NO" id="GmJ-KJ-YZk">
-                                <rect key="frame" x="8" y="284" width="359" height="99"/>
+                                <rect key="frame" x="4" y="284" width="367" height="99"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GmJ-KJ-YZk" firstAttribute="centerY" secondItem="FuE-7b-rWk" secondAttribute="centerY" id="4N4-WZ-jtM"/>
-                            <constraint firstItem="GmJ-KJ-YZk" firstAttribute="leading" secondItem="haG-Ar-TfO" secondAttribute="leading" constant="8" id="Rey-3K-luK"/>
-                            <constraint firstItem="haG-Ar-TfO" firstAttribute="trailing" secondItem="GmJ-KJ-YZk" secondAttribute="trailing" constant="8" id="WYy-fd-I8f"/>
+                            <constraint firstItem="GmJ-KJ-YZk" firstAttribute="leading" secondItem="haG-Ar-TfO" secondAttribute="leading" constant="4" id="Rey-3K-luK"/>
+                            <constraint firstItem="haG-Ar-TfO" firstAttribute="trailing" secondItem="GmJ-KJ-YZk" secondAttribute="trailing" constant="4" id="WYy-fd-I8f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="haG-Ar-TfO"/>
                     </view>
