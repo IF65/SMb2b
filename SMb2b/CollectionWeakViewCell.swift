@@ -17,7 +17,6 @@ class CollectionWeakViewCell: UICollectionViewCell {
     @IBOutlet weak var etichettaMeseFinale: UILabel!
     @IBOutlet weak var boxInterno: UIView!
     @IBOutlet weak var boxInternoTopBar: UIView!
-    @IBOutlet weak var barraSelezione: UIView!
     
     override func layoutSubviews() {
         super.layoutSubviews()

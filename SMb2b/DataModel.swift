@@ -13,17 +13,31 @@ import Foundation
 var clienti = [Cliente]()
 var periodo = [Date]()
 var settimane = [Settimana]()
+var mesi = [Mese]()
 
 //var weekDayShort = [0:"Lun",1:"Mar",2:"Mer",3:"Gio",4:"Ven",5:"Sab",6:"Dom"]
 
 enum TipoCalendario {
     case giorno
     case settimana
-    /*case mese
-    case anno*/
+    case mese
+    //case anno
 }
 
 class Settimana {
+    let numero: Int
+    var dataInizio: Date
+    var dataFine: Date
+    var index: Int = 0
+    
+    init(Numero numero: Int, Inizio dataInizio:Date, Fine dataFine: Date) {
+        self.numero = numero
+        self.dataInizio = dataInizio
+        self.dataFine = dataFine
+    }
+}
+
+class Mese {
     let numero: Int
     var dataInizio: Date
     var dataFine: Date

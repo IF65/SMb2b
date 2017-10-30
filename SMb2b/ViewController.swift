@@ -24,10 +24,8 @@ class ViewController: UIViewController {
         case .giorno:
             self.tipoCalendario = .settimana
         case .settimana:
-            /*self.tipoCalendario = .mese
+            self.tipoCalendario = .mese
         case .mese:
-            self.tipoCalendario = .anno
-        case .anno:*/
             self.tipoCalendario = .giorno
         }
         
@@ -39,6 +37,7 @@ class ViewController: UIViewController {
     // selezione corrente
     var selectedDateIndex: Int = 0
     var selectedWeekIndex: Int = 0
+    var selectedMonthIndex: Int = 0
     
     // calendario
     var tipoCalendario: TipoCalendario = .giorno
@@ -111,6 +110,22 @@ class ViewController: UIViewController {
                 settimana.index = periodo.count - 1
                 settimane.append(settimana)
             }
+            
+            // mese
+            let dayOfMonth = Calendar.current.component(.day, from: date!)
+            if dayOfMonth == 1 {
+                let components = Calendar.current.dateComponents([.year, .month], from: date!)
+                let startOfMonth = Calendar.current.date(from: components)
+                
+                var componentsToAdd = DateComponents()
+                componentsToAdd.month = 1
+                componentsToAdd.day = -1
+                let endOfMonth = Calendar.current.date(byAdding: componentsToAdd, to: startOfMonth!)
+                
+                let mese = Mese(Numero: Calendar.current.component(.weekOfYear, from: date!), Inizio: startOfMonth!, Fine: endOfMonth!)
+                mese.index = periodo.count - 1
+                mesi.append(mese)
+            }
         }
         
         //Inizializzazione interfaccia
@@ -145,8 +160,10 @@ class ViewController: UIViewController {
             (context) -> Void in
             if self.tipoCalendario == .giorno {
                 self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
-            } else {
+            } else if self.tipoCalendario == .settimana {
                 self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedWeekIndex, section: 0), at: .centeredHorizontally, animated: true)
+            } else {
+                self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedMonthIndex, section: 0), at: .centeredHorizontally, animated: true)
             }
             return
         }
@@ -193,8 +210,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if tipoCalendario == .giorno {
             return periodo.count
-        } else {
+        } else if tipoCalendario == .settimana {
             return settimane.count
+        } else {
+            return mesi.count
         }
     }
     
@@ -218,7 +237,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.etichettaMese.text = dateFormatter.monthSymbols[Calendar.current.component(.month, from: periodo[indexPath.row]) - 1]
             
             return cell
-        } else {
+        } else if tipoCalendario == .settimana{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weakCell", for: indexPath) as! CollectionWeakViewCell
             
             if indexPath.row == selectedWeekIndex {
@@ -239,6 +258,24 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.etichettaMeseFinale.text = dateFormatter.monthSymbols[Calendar.current.component(.month, from: settimane[indexPath.row].dataFine) - 1]
             
             return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as! CollectionMonthViewCell
+            
+            if indexPath.row == selectedMonthIndex {
+                cell.boxInternoTopBar.backgroundColor = purpleSM
+            } else {
+                cell.boxInternoTopBar.layer.backgroundColor = blueSM.cgColor
+            }
+            
+            //cell.etichettaAnno.text = "Settimana n.\(settimane[indexPath.row].numero)"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "it_IT")
+            cell.etichettaMese.text = dateFormatter.monthSymbols[Calendar.current.component(.month, from: mesi[indexPath.row].dataInizio) - 1]
+            
+            cell.etichettaAnno.text = String(Calendar.current.component(.year, from: mesi[indexPath.row].dataInizio))
+        
+            return cell
         }
         
         
@@ -252,9 +289,15 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         if tipoCalendario == .giorno {
             selectedDateIndex = indexPath.row
             selectedWeekIndex = Calendar.current.component(.weekOfYear, from: periodo[selectedDateIndex]) - 1
+            selectedMonthIndex = Calendar.current.component(.month, from: periodo[selectedDateIndex]) - 1
+        } else if tipoCalendario == .settimana {
+            selectedDateIndex = settimane[indexPath.row].index
+            selectedWeekIndex = indexPath.row
+            selectedMonthIndex = indexPath.row
         } else {
             selectedDateIndex = settimane[indexPath.row].index
             selectedWeekIndex = indexPath.row
+            selectedMonthIndex = indexPath.row
         }
         
         collectionView.reloadData()
@@ -284,9 +327,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             if self.tipoCalendario == .giorno {
                 searchRequest.dallaData = dateFormatter.string(from:  periodo[selectedDateIndex])
                 searchRequest.allaData = dateFormatter.string(from:  periodo[selectedDateIndex])
-            } else {
+            } else if self.tipoCalendario == .settimana {
                 searchRequest.dallaData = dateFormatter.string(from:  settimane[selectedWeekIndex].dataInizio)
                 searchRequest.allaData = dateFormatter.string(from:  settimane[selectedWeekIndex].dataFine)
+            } else {
+                searchRequest.dallaData = dateFormatter.string(from:  mesi[selectedMonthIndex].dataInizio)
+                searchRequest.allaData = dateFormatter.string(from:  mesi[selectedMonthIndex].dataFine)
             }
             let encoder = JSONEncoder()
             let searchRequestBody = try encoder.encode(searchRequest)
@@ -331,8 +377,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                             self.isLoading = false
                             if self.tipoCalendario == .giorno {
                                 self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
+                            } else if self.tipoCalendario == .settimana {
+                                self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedWeekIndex, section: 0), at: .centeredHorizontally, animated: true)
                             } else {
-                                 self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedWeekIndex, section: 0), at: .centeredHorizontally, animated: true)
+                                self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedMonthIndex, section: 0), at: .centeredHorizontally, animated: true)
                             }
                            
                             self.tableView.reloadData()
@@ -350,8 +398,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                     self.tableView.reloadData()
                     if self.tipoCalendario == .giorno {
                         self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedDateIndex, section: 0), at: .centeredHorizontally, animated: true)
-                    } else {
+                    } else if self.tipoCalendario == .settimana {
                         self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedWeekIndex, section: 0), at: .centeredHorizontally, animated: true)
+                    } else {
+                        self.topCollectionView.scrollToItem(at: IndexPath(item: self.selectedMonthIndex, section: 0), at: .centeredHorizontally, animated: true)
                     }
                     self.showNetworkError()
                 }
@@ -441,6 +491,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let height: Int
         if tipoCalendario == .giorno {
             width = 60
+            height = 60
+        } else if tipoCalendario == .settimana {
+            width = 120
             height = 60
         } else {
             width = 120
