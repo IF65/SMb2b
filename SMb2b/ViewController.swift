@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         totalPanel.layer.borderColor = UIColor.lightGray.cgColor
         totalPanel.layer.borderWidth = 0.5
         
-        
+        periodo.selectItem(Per: tipoCalendario, index: periodo.selezioneGiorno!)
         
         performSearch()
     }
@@ -189,21 +189,20 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "monthCell", for: indexPath) as! CollectionMonthViewCell
-            /*
-            if indexPath.row == selectedMonthIndex {
+        
+            if indexPath.row == periodo.getSelectedIndex(Per: .mese) {
                 cell.boxInternoTopBar.backgroundColor = purpleSM
             } else {
                 cell.boxInternoTopBar.layer.backgroundColor = blueSM.cgColor
             }
             
-            //cell.etichettaAnno.text = "Settimana n.\(settimane[indexPath.row].numero)"
-            
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "it_IT")
-            cell.etichettaMese.text = dateFormatter.monthSymbols[Calendar.current.component(.month, from: mesi[indexPath.row].dataInizio) - 1]
             
-            cell.etichettaAnno.text = String(Calendar.current.component(.year, from: mesi[indexPath.row].dataInizio))
-        */
+            let dataInizio = (periodo.getItem(Per: .mese, index: indexPath.row) as! Mese).dataInizio
+            cell.etichettaMese.text = dateFormatter.monthSymbols[Calendar.current.component(.month, from: dataInizio) - 1].capitalizingFirstLetter()
+            cell.etichettaAnno.text = String(Calendar.current.component(.year, from: dataInizio))
+        
             return cell
         }
         
@@ -405,7 +404,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             width = 120
             height = 60
         } else {
-            width = 120
+            width = 125
             height = 60
         }
         return CGSize(width: width, height: height)
@@ -428,6 +427,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize*/
 }
 
-
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}
 
 
