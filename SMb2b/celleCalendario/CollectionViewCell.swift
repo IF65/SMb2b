@@ -36,8 +36,8 @@ class CollectionViewCell: UICollectionViewCell {
         self.boxInternoTopBar.layer.cornerRadius = 4.0
         self.boxInternoTopBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        self.etichettaGiorno.textColor = UIColor.black
-        self.etichettaMese.textColor = UIColor.black
+        self.etichettaGiorno.textColor = blueSM
+        self.etichettaMese.textColor = blueSM
         
         self.etichettaGiornoDellaSettimana.textColor = UIColor.white
         

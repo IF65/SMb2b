@@ -1,20 +1,17 @@
 //
-//  CollectionWeakViewCell.swift
+//  CollectionMonthViewCell.swift
 //  SMb2b
 //
-//  Created by Marco Gnecchi on 29/10/2017.
+//  Created by if65 on 30/10/2017.
 //  Copyright © 2017 Marco Gnecchi. All rights reserved.
 //
 
 import UIKit
 
-class CollectionWeakViewCell: UICollectionViewCell {
+class CollectionMonthViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var etichettaNumeroSettimana: UILabel!
-    @IBOutlet weak var etichettaGiornoIniziale: UILabel!
-    @IBOutlet weak var etichettaGiornoFinale: UILabel!
-    @IBOutlet weak var etichettaMeseIniziale: UILabel!
-    @IBOutlet weak var etichettaMeseFinale: UILabel!
+    @IBOutlet weak var etichettaAnno: UILabel!
+    @IBOutlet weak var etichettaMese: UILabel!
     @IBOutlet weak var boxInterno: UIView!
     @IBOutlet weak var boxInternoTopBar: UIView!
     
@@ -38,13 +35,8 @@ class CollectionWeakViewCell: UICollectionViewCell {
         self.boxInternoTopBar.layer.cornerRadius = 4.0
         self.boxInternoTopBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        self.etichettaGiornoIniziale.textColor = UIColor.black
-        self.etichettaMeseIniziale.textColor = UIColor.black
-        self.etichettaGiornoFinale.textColor = UIColor.black
-        self.etichettaMeseFinale.textColor = UIColor.black
+        self.etichettaMese.textColor = blueSM
         
-        self.etichettaNumeroSettimana.textColor = UIColor.white
-        
+        self.etichettaAnno.textColor = UIColor.white
     }
-    
 }

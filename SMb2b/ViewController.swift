@@ -22,8 +22,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var totalPanel: UIView!
     @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var countTitle: UILabel!
     @IBOutlet weak var margine: UILabel!
+    @IBOutlet weak var margineTitle: UILabel!
     @IBOutlet weak var totale: UILabel!
+    @IBOutlet weak var totaleTitle: UILabel!
+    
+    @IBOutlet weak var boxCount: UIView!
+    @IBOutlet weak var boxMargine: UIView!
+    @IBOutlet weak var boxTotale: UIView!
     
     @IBAction func cambiaTipoCalendario(_ sender: UIBarButtonItem) {
         
@@ -80,6 +87,30 @@ class ViewController: UIViewController {
         totalPanel.layer.backgroundColor = UIColor.white.cgColor;//UIColor.lightGray.withAlphaComponent(0.1).cgColor
         totalPanel.layer.borderColor = UIColor.lightGray.cgColor
         totalPanel.layer.borderWidth = 0.0
+        
+        boxTotale.layer.cornerRadius = 8.0
+        boxTotale.layer.borderColor = blueSM.cgColor //UIColor.lightGray.cgColor
+        boxTotale.layer.borderWidth = 1.0
+        boxTotale.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+        totale.textColor = blueSM
+        totaleTitle.text = "Totale"
+        totaleTitle.textColor = blueSM
+        
+        boxMargine.layer.cornerRadius = 8.0
+        boxMargine.layer.borderColor = blueSM.cgColor //UIColor.lightGray.cgColor
+        boxMargine.layer.borderWidth = 1.0
+        boxMargine.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+        margine.textColor = blueSM
+        margineTitle.text = "Margine"
+        margineTitle.textColor = blueSM
+        
+        boxCount.layer.cornerRadius = 8.0
+        boxCount.layer.borderColor = blueSM.cgColor //UIColor.lightGray.cgColor
+        boxCount.layer.borderWidth = 1.0
+        boxCount.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+        count.textColor = blueSM
+        countTitle.text = "Ordini"
+        countTitle.textColor = blueSM
         
         tableView.layer.borderColor = UIColor.lightGray.cgColor
         tableView.layer.borderWidth = 0.3

@@ -53,6 +53,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C0B06DF1FAA616500BEABBF /* celleCalendario */ = {
+			isa = PBXGroup;
+			children = (
+				9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */,
+				9C4501CA1FA64E1300DD563C /* CollectionWeakViewCell.swift */,
+				C9DD75401FA7D5260072E798 /* CollectionMonthViewCell.swift */,
+			);
+			path = celleCalendario;
+			sourceTree = "<group>";
+		};
 		9CAC06921F97DB0400605105 = {
 			isa = PBXGroup;
 			children = (
@@ -74,10 +84,8 @@
 			children = (
 				9CAC069E1F97DB0400605105 /* AppDelegate.swift */,
 				9CAC06A01F97DB0400605105 /* ViewController.swift */,
-				9CAC06B41F97F06B00605105 /* CollectionViewCell.swift */,
-				9C4501CA1FA64E1300DD563C /* CollectionWeakViewCell.swift */,
-				C9DD75401FA7D5260072E798 /* CollectionMonthViewCell.swift */,
-				9CE4F9291F9D48F700C731FB /* Tabella Ordini */,
+				9C0B06DF1FAA616500BEABBF /* celleCalendario */,
+				9CE4F9291F9D48F700C731FB /* celleListaOrdini */,
 				C9B1C1A21F9F611D000FAEC7 /* ViewControllerOrdini.swift */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
 				9CAC06A51F97DB0400605105 /* Assets.xcassets */,
@@ -88,7 +96,7 @@
 			path = SMb2b;
 			sourceTree = "<group>";
 		};
-		9CE4F9291F9D48F700C731FB /* Tabella Ordini */ = {
+		9CE4F9291F9D48F700C731FB /* celleListaOrdini */ = {
 			isa = PBXGroup;
 			children = (
 				9CE4F9211F9D3FC800C731FB /* SearchResultCell.xib */,
@@ -96,7 +104,7 @@
 				9CE4F9251F9D409800C731FB /* NothingFoundCell.xib */,
 				9CE4F9271F9D40A700C731FB /* LoadingCell.xib */,
 			);
-			path = "Tabella Ordini";
+			path = celleListaOrdini;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

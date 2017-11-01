@@ -10,9 +10,16 @@ import UIKit
 
 class SearchResultCell: UITableViewCell {
     
+    @IBOutlet weak var cliente: UILabel!
+    @IBOutlet weak var totale: UILabel!
+    @IBOutlet weak var descrizione: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        cliente.textColor = blueSM
+        totale.textColor = blueSM
+        descrizione.textColor = blueSM
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,8 +28,6 @@ class SearchResultCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBOutlet weak var cliente: UILabel!
-    @IBOutlet weak var totale: UILabel!
-    @IBOutlet weak var descrizione: UILabel!
+   
     
 }
