@@ -106,8 +106,8 @@ class ElencoDate {
                 selezioneMese = self.mesi.count - 1
             }
             
-            //date = date.addingTimeInterval(60*60*24)
-            date = calendar.date(byAdding: DateComponents(day: 1), to: date)!
+            date = date.addingTimeInterval(60*60*24)
+            //date = calendar.date(byAdding: DateComponents(day: 1), to: date)!
         }
     }
     
@@ -125,7 +125,7 @@ class ElencoDate {
     func selectItem(Per tipo:TipoCalendario, index:Int) -> Void {
         let searchComponents = calendar.dateComponents([.year, .month, .weekOfYear], from: giorni[index].data)
         
-        if tipo == .giorno {
+        if tipo == .giorno { //<------ Giorno
             selezioneGiorno = index
             
             selezioneSettimana = nil
@@ -141,15 +141,39 @@ class ElencoDate {
                     selezioneMese = index
                 }
             }
-        } else if tipo == .settimana {
+        } else if tipo == .settimana { //<------ Settimana
             selezioneSettimana = index
+            
+            // se il nuovo giorno selezionato ricade nella settimana selezionata non faccio nulla
             let settimanaSelezionata = getItem(Per: .settimana, index: selezioneSettimana!) as! Settimana
             let settimanaDelGiornoSelezionato = getItem(Per: .settimana, data: giorni[selezioneGiorno!].data) as! Settimana
-            
             if  settimanaSelezionata != settimanaDelGiornoSelezionato {
-                //selezioneGiorno
+                selezioneGiorno = nil
+                for index in 0..<giorni.count {
+                    if giorni[index].anno == settimanaSelezionata.anno && compare(Data1: giorni[index].data, Data2: settimanaSelezionata.dataInizio) == 0 {
+                        selezioneGiorno = index
+                    }
+                }
             }
-        } else {
+            
+            // se il nuovo giorno selezionato ricade nel mese selezionato non faccio nulla
+            let meseSelezionato = getItem(Per: .mese, index: selezioneMese!) as! Mese
+            let meseDelGiornoSelezionato = getItem(Per: .mese, data: giorni[selezioneGiorno!].data) as! Mese
+            if  meseSelezionato != meseDelGiornoSelezionato {
+                selezioneMese = nil
+                for index in 0..<mesi.count {
+                    if mesi[index].anno == meseDelGiornoSelezionato.anno && mesi[index].numero == meseDelGiornoSelezionato.numero {
+                        selezioneMese = index
+                    }
+                }
+                
+                /*for index in 0..<mesi.count {
+                    if mesi[index].anno == settimanaSelezionata.anno && compare(Data1: mesi[index].dataInizio, Data2: settimanaSelezionata.dataFine) == -1 && compare(Data1: mesi[index].dataFine, Data2: settimanaSelezionata.dataInizio) == 1 {
+                        selezioneMese = index
+                    }
+                }*/
+            }
+        } else { //<------ Mese
             selezioneMese = index
         }
     }
@@ -167,14 +191,17 @@ class ElencoDate {
     
     // ritorna l'oggetto della selezione corrente in base al tipo
     func getSelectedItem(Per tipo:TipoCalendario) -> Any? {
+        var returnedObject: Any? = nil
+        
         if tipo == .giorno {
-            if let selezioneGiorno = selezioneGiorno { return giorni[selezioneGiorno] }
+            if let selezioneGiorno = selezioneGiorno { returnedObject = giorni[selezioneGiorno] }
         } else if tipo == .settimana {
-            if let selezioneSettimana = selezioneSettimana { return settimane[selezioneSettimana] }
+            if let selezioneSettimana = selezioneSettimana { returnedObject = settimane[selezioneSettimana] }
         } else {
-            if let selezioneMese = selezioneMese { return mesi[selezioneMese] }
+            if let selezioneMese = selezioneMese { returnedObject = mesi[selezioneMese] }
         }
-        return nil
+        
+        return returnedObject
     }
     
     // ritorna l'oggetto alla posizione richiesta in base al tipo
@@ -261,7 +288,7 @@ class Settimana: Equatable{
     }
 }
 
-class Mese {
+class Mese: Equatable {
     let numero: Int
     var dataInizio: Date
     var dataFine: Date
@@ -272,6 +299,16 @@ class Mese {
         self.dataInizio = dataInizio
         self.dataFine = dataFine
         self.anno = Calendar.current.component(.year, from: dataInizio)
+    }
+    
+    static func == (primo:Mese, secondo:Mese)->Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .short
+        
+        return
+            (primo.numero == secondo.numero && primo.anno == secondo.anno) ||
+                (compare(Data1:primo.dataInizio, Data2:secondo.dataInizio) == 0 && compare(Data1:primo.dataFine, Data2:secondo.dataFine) == 0)
     }
 }
 

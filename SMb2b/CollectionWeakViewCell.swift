@@ -28,10 +28,10 @@ class CollectionWeakViewCell: UICollectionViewCell {
         self.boxInterno.layer.borderWidth = 0.5
         self.boxInterno.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        self.boxInterno.layer.shadowColor = UIColor.lightGray.cgColor
+        /*self.boxInterno.layer.shadowColor = UIColor.lightGray.cgColor
         self.boxInterno.layer.shadowOpacity = 1
         self.boxInterno.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        self.boxInterno.layer.shadowRadius = 2
+        self.boxInterno.layer.shadowRadius = 2*/
         
         self.boxInterno.layer.backgroundColor = UIColor.white.cgColor
         

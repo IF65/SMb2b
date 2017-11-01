@@ -8,6 +8,12 @@
 
 import UIKit
 
+// colors
+public let blueSM = UIColor(red: 0.0, green: 85/255, blue: 145/255, alpha: 1)
+public let purpleSM = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
+public let darkGreen = UIColor(red: 0, green: 102/255, blue: 51/255, alpha: 1)
+public let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 1.0)
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionViewPanel: UIView!
@@ -37,12 +43,6 @@ class ViewController: UIViewController {
     
     // calendario
     var tipoCalendario: TipoCalendario = .giorno
-    
-    // colors
-    let blueSM = UIColor(red: 0.0, green: 85/255, blue: 145/255, alpha: 1)
-    let purpleSM = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
-    let darkGreen = UIColor(red: 0, green: 102/255, blue: 51/255, alpha: 1)
-    let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 1.0)
     
     var dataTask: URLSessionDataTask?
     var searchResults = ResultArray()
@@ -79,7 +79,10 @@ class ViewController: UIViewController {
         
         totalPanel.layer.backgroundColor = UIColor.white.cgColor;//UIColor.lightGray.withAlphaComponent(0.1).cgColor
         totalPanel.layer.borderColor = UIColor.lightGray.cgColor
-        totalPanel.layer.borderWidth = 0.5
+        totalPanel.layer.borderWidth = 0.0
+        
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
+        tableView.layer.borderWidth = 0.3
         
         periodo.selectItem(Per: tipoCalendario, index: periodo.selezioneGiorno!)
         
@@ -233,7 +236,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let url = URL(string: "http://11.0.1.31:8080/b2b")
         
         do {
-            
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "it_IT")
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -296,6 +298,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                             self.margine.text = currencyFormatter.string(from: margine as NSNumber)!
                             self.totale.text = currencyFormatter.string(from: totale as NSNumber)!
                             self.isLoading = false
+                            
                             self.topCollectionView.scrollToItem(at: IndexPath(item: periodo.getSelectedIndex(Per: self.tipoCalendario)!, section: 0), at: .centeredHorizontally, animated: true)
                             self.tableView.reloadData()
                         }
@@ -309,8 +312,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
                 DispatchQueue.main.async {
                     self.hasSearched = false
                     self.isLoading = false
-                    self.tableView.reloadData()
                     self.topCollectionView.scrollToItem(at: IndexPath(item: periodo.getSelectedIndex(Per: self.tipoCalendario)!, section: 0), at: .centeredHorizontally, animated: true)
+                    self.tableView.reloadData()
                     self.showNetworkError()
                 }
                 
