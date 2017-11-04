@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 // colors
 public let blueSM = UIColor(red: 0.0, green: 85/255, blue: 145/255, alpha: 1)
@@ -16,7 +17,6 @@ public let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var collectionViewPanel: UIView!
     @IBOutlet weak var topCollectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,6 +48,9 @@ class ViewController: UIViewController {
         topCollectionView.reloadData()
     }
     
+    @IBAction func menuOpen(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
     // calendario
     var tipoCalendario: TipoCalendario = .giorno
     
@@ -58,6 +61,21 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Define the menus
+        //let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: self)
+        // UISideMenuNavigationController is a subclass of UINavigationController, so do any additional configuration
+        // of it here like setting its viewControllers. If you're using storyboards, you'll want to do something like:
+        let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuPresentMode = .menuSlideIn
+        SideMenuManager.default.menuFadeStatusBar = false
+        
+        // Enable gestures. The left and/or right menus must be set up above for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the view controller it displays!
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        
         
         clienti.append(Cliente(codice: "EPRICE", descrizione: "ePrice"))
         clienti.append(Cliente(codice: "ONLINESTORE", descrizione: "Online Store"))
@@ -81,12 +99,9 @@ class ViewController: UIViewController {
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
         
-        collectionViewPanel.layer.borderColor = UIColor.lightGray.cgColor
-        collectionViewPanel.layer.borderWidth = 0.5
-        
         totalPanel.layer.backgroundColor = UIColor.white.cgColor;//UIColor.lightGray.withAlphaComponent(0.1).cgColor
         totalPanel.layer.borderColor = UIColor.lightGray.cgColor
-        totalPanel.layer.borderWidth = 0.0
+        totalPanel.layer.borderWidth = 0.5
         
         boxTotale.layer.cornerRadius = 8.0
         boxTotale.layer.borderColor = blueSM.cgColor //UIColor.lightGray.cgColor
@@ -416,14 +431,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: "elencoOrdini", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
         let destinationViewController = segue.destination as! ViewControllerOrdini
         destinationViewController.clienteSelezionato = "EPRICE"
         //destinationViewController.dataSelezionata = periodo[selectedDateIndex]
-    }
+    }*/
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
@@ -438,7 +453,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             width = 120
             height = 60
         } else {
-            width = 125
+            width = 120
             height = 60
         }
         return CGSize(width: width, height: height)
