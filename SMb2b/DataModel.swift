@@ -7,11 +7,12 @@
 //
 
 import Foundation
-
+import UIKit
 
 // dati
 var clienti = [Cliente]()
 var periodo =  ElencoDate()
+var slideMenu = [MenuElement]()
 
 enum TipoCalendario {
     case giorno
@@ -30,6 +31,17 @@ func compare(Data1 date1:Date, Data2 date2:Date) -> Int {
         return -1
     } else {
         return 1
+    }
+}
+
+class MenuElement {
+    let id: Int
+    let descrizione: String
+    var image: UIImage?
+    
+    init(Id id: Int, Descrizione descrizione: String) {
+        self.id = id
+        self.descrizione = descrizione
     }
 }
 

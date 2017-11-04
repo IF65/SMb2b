@@ -16,13 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        /*let smPurple = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
-        let attributes = [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)]
+        slideMenu.append(MenuElement(Id: 0, Descrizione: "B2B"))
+        slideMenu.append(MenuElement(Id: 10, Descrizione: "Incassi T.R."))
+        slideMenu.append(MenuElement(Id: 20, Descrizione: "Caricamento DC"))
         
-        UINavigationBar.appearance().barTintColor = smPurple
-        UINavigationBar.appearance().titleTextAttributes = attributes*/
-        
-        Thread.sleep(forTimeInterval: 3.0)
+        Thread.sleep(forTimeInterval: 1.0)
         
         return true
     }

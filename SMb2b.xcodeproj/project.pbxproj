@@ -22,6 +22,7 @@
 		9CE4F9281F9D40A700C731FB /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4F9271F9D40A700C731FB /* LoadingCell.xib */; };
 		C12DEC1B2856ED2FFE691B25 /* Pods_SMb2b.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6297F4C43DFE2390076E959 /* Pods_SMb2b.framework */; };
 		C9B1C1A31F9F611D000FAEC7 /* ViewControllerOrdini.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B1C1A21F9F611D000FAEC7 /* ViewControllerOrdini.swift */; };
+		C9C77E881FAE226400AAD49E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C77E871FAE226400AAD49E /* MenuViewController.swift */; };
 		C9DD75411FA7D5260072E798 /* CollectionMonthViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD75401FA7D5260072E798 /* CollectionMonthViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		9CE4F9251F9D409800C731FB /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		9CE4F9271F9D40A700C731FB /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		C9B1C1A21F9F611D000FAEC7 /* ViewControllerOrdini.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerOrdini.swift; sourceTree = "<group>"; };
+		C9C77E871FAE226400AAD49E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C9DD75401FA7D5260072E798 /* CollectionMonthViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMonthViewCell.swift; sourceTree = "<group>"; };
 		D6297F4C43DFE2390076E959 /* Pods_SMb2b.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMb2b.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				9C0B06DF1FAA616500BEABBF /* celleCalendario */,
 				9CE4F9291F9D48F700C731FB /* celleListaOrdini */,
 				C9B1C1A21F9F611D000FAEC7 /* ViewControllerOrdini.swift */,
+				C9C77E871FAE226400AAD49E /* MenuViewController.swift */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
 				9CAC06A51F97DB0400605105 /* Assets.xcassets */,
 				9CAC06A71F97DB0400605105 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B1C1A31F9F611D000FAEC7 /* ViewControllerOrdini.swift in Sources */,
+				C9C77E881FAE226400AAD49E /* MenuViewController.swift in Sources */,
 				9CAC06A11F97DB0400605105 /* ViewController.swift in Sources */,
 				9CAC069F1F97DB0400605105 /* AppDelegate.swift in Sources */,
 				9CAC06B51F97F06B00605105 /* CollectionViewCell.swift in Sources */,
