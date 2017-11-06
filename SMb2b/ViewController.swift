@@ -317,9 +317,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             dataTask = session.dataTask(with: request) {data,response,error in
                 if let error = error {
                     print("Failure! \(error)")
-                } else if let httpResponse = response as? HTTPURLResponse,
-                    httpResponse.statusCode == 200 {
-                    
+                } else if let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
                     if let data = data {
                         self.searchResults = self.parse(data: data)!
                         

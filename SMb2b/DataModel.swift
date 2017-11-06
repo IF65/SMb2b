@@ -364,3 +364,31 @@ class SearchRequest:Codable {
     var allaData = ""
 }
 
+class ElencoOrdiniRequest:Codable {
+    var codiceCliente = ""
+    var dallaData = ""
+    var allaData = ""
+}
+
+class ElencoOrdini:Codable {
+    var id: String = ""
+    var data: Date?
+    var dataCompetenza: Date?
+    var codiceCliente: String = ""
+    var denominazioneCliente: String = ""
+    var backOrder: Bool = false
+    var numero: Int = 0
+    var riferimentoCliente: String = ""
+    var tipo: Int = 0
+    var note: String = ""
+    var totale: Double = 0.0
+    var margine: Double = 0.0
+    var numeroReferenze: Double = 0.0
+    var preordineCreato: Bool = false
+    var bozza: Bool = false
+    var eliminato: Bool = false
+    var preventivo: Bool = false
+    var dataInvioPreventivo: Date?
+    var dataAccettazionePreventivo: Date?
+}
+
