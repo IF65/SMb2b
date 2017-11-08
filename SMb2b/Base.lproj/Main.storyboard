@@ -465,10 +465,10 @@
             </objects>
             <point key="canvasLocation" x="1923" y="125"/>
         </scene>
-        <!--View Controller-->
+        <!--Righe OrdineVC-->
         <scene sceneID="bcc-Nt-vzq">
             <objects>
-                <viewController id="Kcp-Dq-yjg" sceneMemberID="viewController">
+                <viewController id="Kcp-Dq-yjg" customClass="RigheOrdineVC" customModule="SMb2b" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IOD-8N-v3U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -497,6 +497,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Ct-5A-YNX"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="H5i-dx-Vdn" id="Scy-vN-Mu1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ryu-Ti-ISb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

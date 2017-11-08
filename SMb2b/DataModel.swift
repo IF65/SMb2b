@@ -399,3 +399,34 @@ struct OrdiniElenco:Codable {
     var dataAccettazionePreventivo: String = ""
 }
 
+//MARK:- Righe ordine
+struct OrdineRigheRequest:Codable {
+    var id = ""
+}
+
+struct OrdineRigheResult:Codable {
+    var resultCount = 0
+    var results = [OrdineRighe]()
+}
+
+struct OrdineRighe:Codable {
+    var id: String = ""
+    var data: String = ""
+    var dataCompetenza: String = ""
+    var codiceCliente: String = ""
+    var denominazioneCliente: String = ""
+    var backOrder: Bool = false
+    var numero: Int = 0
+    var riferimentoCliente: String = ""
+    var tipo: Int = 0
+    var note: String = ""
+    var totale: Double = 0.0
+    var margine: Double = 0.0
+    var numeroReferenze: Double = 0.0
+    var preordineCreato: Bool = false
+    var bozza: Bool = false
+    var eliminato: Bool = false
+    var preventivo: Bool = false
+    var dataInvioPreventivo: String = ""
+    var dataAccettazionePreventivo: String = ""
+}

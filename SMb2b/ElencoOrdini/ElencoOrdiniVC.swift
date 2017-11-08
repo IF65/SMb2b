@@ -16,6 +16,8 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dataFine: Date?
     var clienteCodice: String?
     
+    var idSelezionato: String?
+    
     var dataTask: URLSessionDataTask?
     var searchResults = OrdiniElencoResult()
     var isLoading = false
@@ -84,7 +86,26 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        idSelezionato = searchResults.results[indexPath.row].id
+        
         self.performSegue(withIdentifier: "righeOrdine", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "righeOrdine" {
+            let destinationViewController = segue.destination as! RigheOrdineVC
+            if let idSelezionato = idSelezionato {
+                destinationViewController.idOrdine = idSelezionato
+            }
+            
+            // il backbutton appartiene sempre al view controller precedente
+            let backBarButtonItem = UIBarButtonItem()
+            backBarButtonItem.title = "Indietro"
+            navigationItem.backBarButtonItem = backBarButtonItem
+        }
     }
     
     //MARK:- Private functions
