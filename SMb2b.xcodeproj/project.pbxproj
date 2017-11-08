@@ -105,7 +105,7 @@
 				9CAC069E1F97DB0400605105 /* AppDelegate.swift */,
 				9CAC06A01F97DB0400605105 /* ViewController.swift */,
 				9C0B06DF1FAA616500BEABBF /* celleCalendario */,
-				9CE4F9291F9D48F700C731FB /* celleListaOrdini */,
+				9CE4F9291F9D48F700C731FB /* celleTotaliOrdini */,
 				C9B1C1A21F9F611D000FAEC7 /* ViewControllerOrdini.swift */,
 				C9C77E871FAE226400AAD49E /* MenuViewController.swift */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
@@ -117,7 +117,7 @@
 			path = SMb2b;
 			sourceTree = "<group>";
 		};
-		9CE4F9291F9D48F700C731FB /* celleListaOrdini */ = {
+		9CE4F9291F9D48F700C731FB /* celleTotaliOrdini */ = {
 			isa = PBXGroup;
 			children = (
 				9CE4F9211F9D3FC800C731FB /* SearchResultCell.xib */,
@@ -126,7 +126,7 @@
 				9C24832C1FAAEBA100095605 /* NothingFoundCell.swift */,
 				9CE4F9271F9D40A700C731FB /* LoadingCell.xib */,
 			);
-			path = celleListaOrdini;
+			path = celleTotaliOrdini;
 			sourceTree = "<group>";
 		};
 		D41191A450E7E01951C722B4 /* Frameworks */ = {

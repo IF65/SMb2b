@@ -346,34 +346,41 @@ class Cliente {
     }
 }
 
-class ResultArray:Codable {
-    var resultCount = 0
-    var results = [SearchResult]()
-}
-
-class SearchResult:Codable {
+//MARK:- Ordini Totali
+struct OrdiniTotali:Codable {
     var codiceCliente = ""
     var totale = 0.0
     var margine = 0.0
     var count = 0
 }
 
-class SearchRequest:Codable {
+struct OrdiniTotaliRequest:Codable {
     var funzione = ""
     var dallaData = ""
     var allaData = ""
 }
 
-class ElencoOrdiniRequest:Codable {
+struct OrdiniTotaliResult:Codable {
+    var resultCount = 0
+    var results = [OrdiniTotali]()
+}
+
+//MARK:- Elenco ordini dettagliato
+struct OrdiniElencoRequest:Codable {
     var codiceCliente = ""
     var dallaData = ""
     var allaData = ""
 }
 
-class ElencoOrdini:Codable {
+struct OrdiniElencoResult:Codable {
+    var resultCount = 0
+    var results = [OrdiniElenco]()
+}
+
+struct OrdiniElenco:Codable {
     var id: String = ""
-    var data: Date?
-    var dataCompetenza: Date?
+    var data: String = ""
+    var dataCompetenza: String = ""
     var codiceCliente: String = ""
     var denominazioneCliente: String = ""
     var backOrder: Bool = false
@@ -388,7 +395,7 @@ class ElencoOrdini:Codable {
     var bozza: Bool = false
     var eliminato: Bool = false
     var preventivo: Bool = false
-    var dataInvioPreventivo: Date?
-    var dataAccettazionePreventivo: Date?
+    var dataInvioPreventivo: String = ""
+    var dataAccettazionePreventivo: String = ""
 }
 

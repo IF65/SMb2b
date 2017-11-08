@@ -12,10 +12,12 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
-    var dataSelezionata: Date?
-    var clienteSelezionato: String?
+    var dataInizio: Date?
+    var dataFine: Date?
+    var clienteCodice: String?
+    
     var dataTask: URLSessionDataTask?
-    var searchResults = ResultArray()
+    var searchResults = OrdiniElencoResult()
     var isLoading = false
     var hasSearched = false
     
@@ -31,21 +33,21 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return searchResults.resultCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ElencoOrdiniCell", for: indexPath) 
         
-        cell.detailTextLabel?.text = "test"
+        cell.textLabel?.text = String(describing: searchResults.results[indexPath.row].numero)
         return cell
     }
     
     //MARK:- Private functions
-    private func parse(data: Data) -> ResultArray? {
+    private func parse(data: Data) -> OrdiniElencoResult? {
         do {
             let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from: data)
+            let result = try decoder.decode(OrdiniElencoResult.self, from: data)
             
             return result
         } catch {
@@ -71,6 +73,17 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
         return returnDate
     }
     
+    private func dateToString(_ date:Date?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" //Your date format
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Current time zone
+        if let date = date {
+             return dateFormatter.string(from:  date)
+        }
+        
+        return ""
+    }
+    
     private func performSearch() {
         dataTask?.cancel()
         hasSearched = true
@@ -86,10 +99,17 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
             dateFormatter.locale = Locale(identifier: "it_IT")
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
-            let elencoOrdiniRequest = ElencoOrdiniRequest()
-            elencoOrdiniRequest.codiceCliente = "EPRICE"
-            elencoOrdiniRequest.dallaData = "2017-11-06"//dateFormatter.string(from:  Date())
-            elencoOrdiniRequest.allaData = "2017-11-06"//dateFormatter.string(from:  Date())
+            var elencoOrdiniRequest = OrdiniElencoRequest()
+            if let clienteCodice = clienteCodice {
+                elencoOrdiniRequest.codiceCliente = clienteCodice
+                print("Cliente: \(clienteCodice)")
+            }
+            elencoOrdiniRequest.dallaData = dateToString(dataInizio)
+            elencoOrdiniRequest.allaData = dateToString(dataFine)
+            
+    
+            print("Inizio: \(dateToString(dataInizio))")
+            print("Fine  : \(dateToString(dataFine))")
             
             let encoder = JSONEncoder()
             let elencoOrdiniRequestBody = try encoder.encode(elencoOrdiniRequest)
@@ -111,22 +131,6 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
                         self.searchResults = self.parse(data: data)!
                         
                         DispatchQueue.main.async {
-                            let currencyFormatter = NumberFormatter()
-                            currencyFormatter.usesGroupingSeparator = true
-                            currencyFormatter.numberStyle = NumberFormatter.Style.decimal
-                            currencyFormatter.minimumFractionDigits = 0
-                            currencyFormatter.maximumFractionDigits = 0
-                            currencyFormatter.locale = NSLocale.current
-                            
-                            var count = 0
-                            var margine = 0.0
-                            var totale = 0.0
-                            for riga in self.searchResults.results {
-                                count += riga.count
-                                margine += riga.margine
-                                totale += riga.totale
-                            }
-                            
                             self.isLoading = false
                             
                             self.tableView.reloadData()

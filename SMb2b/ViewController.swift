@@ -54,8 +54,10 @@ class ViewController: UIViewController {
     // calendario
     var tipoCalendario: TipoCalendario = .giorno
     
+    var clienteSelezionato: String?
+    
     var dataTask: URLSessionDataTask?
-    var searchResults = ResultArray()
+    var searchResults = OrdiniTotaliResult()
     var isLoading = false
     var hasSearched = false
     
@@ -155,10 +157,10 @@ class ViewController: UIViewController {
     }
     
     //MARK:- Private functions
-    private func parse(data: Data) -> ResultArray? {
+    private func parse(data: Data) -> OrdiniTotaliResult? {
         do {
             let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from: data)
+            let result = try decoder.decode(OrdiniTotaliResult.self, from: data)
             
             return result
         } catch {
@@ -286,7 +288,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
             dateFormatter.locale = Locale(identifier: "it_IT")
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
-            let searchRequest = SearchRequest()
+            var searchRequest = OrdiniTotaliRequest()
             searchRequest.funzione = "totaleOrdiniPerCliente"
             
             if self.tipoCalendario == .giorno {
@@ -427,17 +429,35 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // imposto il cliente selezionato
+        clienteSelezionato = searchResults.results[indexPath.row].codiceCliente.capitalized
+        
         self.performSegue(withIdentifier: "elencoOrdini", sender: self)
     }
     
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        let destinationViewController = segue.destination as! ViewControllerOrdini
-        destinationViewController.clienteSelezionato = "EPRICE"
-        //destinationViewController.dataSelezionata = periodo[selectedDateIndex]
-    }*/
+        if segue.identifier == "elencoOrdini" {
+            let destinationViewController = segue.destination as! ViewControllerOrdini
+            destinationViewController.clienteCodice = clienteSelezionato
+            if self.tipoCalendario == .giorno {
+                let selectedItem = periodo.getSelectedItem(Per: .giorno) as! Giorno
+                destinationViewController.dataInizio = selectedItem.data
+                destinationViewController.dataFine = selectedItem.data
+            } else if self.tipoCalendario == .settimana {
+                let selectedItem = periodo.getSelectedItem(Per: .settimana) as! Settimana
+                destinationViewController.dataInizio = selectedItem.dataInizio
+                destinationViewController.dataFine = selectedItem.dataFine
+            } else {
+                let selectedItem = periodo.getSelectedItem(Per: .mese) as! Mese
+                destinationViewController.dataInizio = selectedItem.dataInizio
+                destinationViewController.dataFine = selectedItem.dataFine
+            }
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
