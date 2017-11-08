@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RigheOrdineVC: UIViewController {
+class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,6 +20,11 @@ class RigheOrdineVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var cellNib = UINib(nibName: "LoadingCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "LoadingCell")
+        cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
         
         performSearch()
     }
@@ -68,6 +73,8 @@ class RigheOrdineVC: UIViewController {
             currencyFormatter.locale = NSLocale.current
             cell.totale.text = currencyFormatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!
             */
+            
+            cell.textLabel?.text = searchResults.results[indexPath.row].codiceArticoloGCC
             return cell
         }
     }

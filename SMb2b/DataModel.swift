@@ -411,22 +411,25 @@ struct OrdineRigheResult:Codable {
 
 struct OrdineRighe:Codable {
     var id: String = ""
-    var data: String = ""
-    var dataCompetenza: String = ""
-    var codiceCliente: String = ""
-    var denominazioneCliente: String = ""
-    var backOrder: Bool = false
-    var numero: Int = 0
-    var riferimentoCliente: String = ""
-    var tipo: Int = 0
+    var idOrdiniClienti: String = ""
+    var codiceArticolo: String = ""
+    var codiceArticoloGCC: String = ""
+    var barcode: String = ""
+    var descrizione: String = ""
+    var marchio: String = ""
+    var modello: String = ""
+    var nettoNetto: Double = 0.0
+    var quantita: Int = 0
+    var prezzo: Double = 0.0
+    var quantitaConfermata: Int = 0
+    var quantitaEvasa: Int = 0
+    var codiceArticoloCliente: String = ""
     var note: String = ""
+    var costoGCC: Double = 0.0
     var totale: Double = 0.0
     var margine: Double = 0.0
-    var numeroReferenze: Double = 0.0
-    var preordineCreato: Bool = false
-    var bozza: Bool = false
-    var eliminato: Bool = false
-    var preventivo: Bool = false
-    var dataInvioPreventivo: String = ""
-    var dataAccettazionePreventivo: String = ""
+    var inOrdine: Int = 0
+    var giacenza: Int = 0
+    var ddtNumero: String = ""
+    var ddtData: String = ""
 }
