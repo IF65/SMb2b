@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,6 +24,13 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var cellNib = UINib(nibName: "ElencoOrdiniCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "ElencoOrdiniCell")
+        cellNib = UINib(nibName: "LoadingCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "LoadingCell")
+        cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
+        
         performSearch()
     }
     
@@ -33,14 +40,51 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.resultCount
+        if isLoading {
+            return 1
+        } else {
+            return searchResults.resultCount
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ElencoOrdiniCell", for: indexPath) 
+        if isLoading {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+            
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ElencoOrdiniCell", for: indexPath) as! ElencoOrdiniCell
+            
+            cell.riferimento.text = searchResults.results[indexPath.row].riferimentoCliente
+            let data = searchResults.results[indexPath.row].data[...searchResults.results[indexPath.row].data.index(searchResults.results[indexPath.row].data.startIndex, offsetBy: 9)]
+            
+            var tipo = ""
+            switch searchResults.results[indexPath.row].tipo {
+            case 0 : tipo = "Giornaliero"
+            case 1 : tipo = "Stock"
+            default:
+                tipo = "Drop Ship."
+            }
+            cell.descrizione.text = "Ord. nr.\(searchResults.results[indexPath.row].numero) del \(data) di tipo \(tipo)"
+            
+            let currencyFormatter = NumberFormatter()
+            currencyFormatter.usesGroupingSeparator = true
+            currencyFormatter.numberStyle = NumberFormatter.Style.decimal
+            currencyFormatter.minimumFractionDigits = 0
+            currencyFormatter.maximumFractionDigits = 0
+            currencyFormatter.locale = NSLocale.current
+            cell.totale.text = currencyFormatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        cell.textLabel?.text = String(describing: searchResults.results[indexPath.row].numero)
-        return cell
+        self.performSegue(withIdentifier: "righeOrdine", sender: self)
     }
     
     //MARK:- Private functions
@@ -73,9 +117,14 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
         return returnDate
     }
     
-    private func dateToString(_ date:Date?) -> String {
+    private func dateToString(_ date:Date?, _ format: String?) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd" //Your date format
+        
+        dateFormatter.dateFormat =  "yyyy-MM-dd"
+        if let format = format {
+            dateFormatter.dateFormat = format
+        }
+        
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Current time zone
         if let date = date {
              return dateFormatter.string(from:  date)
@@ -95,21 +144,12 @@ class ViewControllerOrdini: UIViewController, UITableViewDelegate, UITableViewDa
         let url = URL(string: "http://11.0.1.31:8080/b2b")
         
         do {
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "it_IT")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            
             var elencoOrdiniRequest = OrdiniElencoRequest()
             if let clienteCodice = clienteCodice {
                 elencoOrdiniRequest.codiceCliente = clienteCodice
-                print("Cliente: \(clienteCodice)")
             }
-            elencoOrdiniRequest.dallaData = dateToString(dataInizio)
-            elencoOrdiniRequest.allaData = dateToString(dataFine)
-            
-    
-            print("Inizio: \(dateToString(dataInizio))")
-            print("Fine  : \(dateToString(dataFine))")
+            elencoOrdiniRequest.dallaData = dateToString(dataInizio, nil)
+            elencoOrdiniRequest.allaData = dateToString(dataFine, nil)
             
             let encoder = JSONEncoder()
             let elencoOrdiniRequestBody = try encoder.encode(elencoOrdiniRequest)

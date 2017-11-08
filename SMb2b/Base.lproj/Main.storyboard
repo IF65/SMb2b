@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Totale OrdiniVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SMb2b" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TotaleOrdiniVC" customModule="SMb2b" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -370,16 +370,6 @@
                                         <constraint firstItem="kOy-Ii-ePQ" firstAttribute="top" secondItem="BlZ-Sd-0to" secondAttribute="bottom" id="zCE-fT-v41"/>
                                     </constraints>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GJW-MX-t6H">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GJW-MX-t6H" id="8wt-s2-sQB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="xct-Bg-ig4"/>
@@ -440,36 +430,17 @@
             </objects>
             <point key="canvasLocation" x="1020" y="124.58770614692655"/>
         </scene>
-        <!--View Controller Ordini-->
+        <!--Elenco OrdiniVC-->
         <scene sceneID="jvv-zs-xZH">
             <objects>
-                <viewController id="Ga7-rQ-Czr" customClass="ViewControllerOrdini" customModule="SMb2b" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ga7-rQ-Czr" customClass="ElencoOrdiniVC" customModule="SMb2b" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PXn-Rs-mKa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CwK-gL-TcF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CwK-gL-TcF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ElencoOrdiniCell" textLabel="bG8-1X-69B" style="IBUITableViewCellStyleDefault" id="ubw-aT-D47">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ubw-aT-D47" id="u6w-9H-jfR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bG8-1X-69B">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Ga7-rQ-Czr" id="QVD-MB-POs"/>
                                     <outlet property="delegate" destination="Ga7-rQ-Czr" id="fkD-vv-Sa0"/>
@@ -487,11 +458,49 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="CwK-gL-TcF" id="4NM-Bh-2Ne"/>
+                        <segue destination="Kcp-Dq-yjg" kind="show" identifier="righeOrdine" id="5Sa-NG-mJ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VqE-DN-r4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850.4000000000001" y="122.78860569715144"/>
+            <point key="canvasLocation" x="1923" y="125"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bcc-Nt-vzq">
+            <objects>
+                <viewController id="Kcp-Dq-yjg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IOD-8N-v3U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H5i-dx-Vdn">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RigaOrdineCell" id="5SD-th-HPl">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5SD-th-HPl" id="uw8-Kg-jXt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Ct-5A-YNX" firstAttribute="bottom" secondItem="H5i-dx-Vdn" secondAttribute="bottom" id="Y7u-RX-uTl"/>
+                            <constraint firstItem="3Ct-5A-YNX" firstAttribute="trailing" secondItem="H5i-dx-Vdn" secondAttribute="trailing" id="kpn-GH-gd7"/>
+                            <constraint firstItem="H5i-dx-Vdn" firstAttribute="top" secondItem="3Ct-5A-YNX" secondAttribute="top" id="q7l-ef-Xlp"/>
+                            <constraint firstItem="H5i-dx-Vdn" firstAttribute="leading" secondItem="3Ct-5A-YNX" secondAttribute="leading" id="zCv-tD-hjL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Ct-5A-YNX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ryu-Ti-ISb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2785" y="125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7YM-jP-vgE">
@@ -532,7 +541,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEI-2h-8pH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="932"/>
+            <point key="canvasLocation" x="79" y="1061"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="9il-wb-wg3">
@@ -593,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ul-d9-vK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="931"/>
+            <point key="canvasLocation" x="1020" y="1061"/>
         </scene>
     </scenes>
     <resources>
