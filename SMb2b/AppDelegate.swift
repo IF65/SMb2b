@@ -20,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         slideMenu.append(MenuElement(Id: 10, Descrizione: "Incassi T.R."))
         slideMenu.append(MenuElement(Id: 20, Descrizione: "Caricamento DC"))
         
+        // change navigation item title color
+        let navigationBarAppearace = UINavigationBar.appearance()
+        //navigationBarAppearace.tintColor = UIColor.blue
+        //navigationBarAppearace.barTintColor = UIColor.white
+        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor:blueSM]
+        
         Thread.sleep(forTimeInterval: 1.0)
         
         return true

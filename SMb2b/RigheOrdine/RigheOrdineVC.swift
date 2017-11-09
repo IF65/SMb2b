@@ -12,6 +12,7 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     
     var idOrdine: String?
+    var riferimento: String?
     
     var dataTask: URLSessionDataTask?
     var searchResults = OrdineRigheResult()
@@ -76,12 +77,15 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.quantita?.attributedText = pezzi
             cell.totale?.attributedText = totale
             
+            cell.tintColor = blueSM
+            
             return cell
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        navigationController?.setToolbarHidden(true, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = riferimento
+        navigationController?.setToolbarHidden(true, animated: false)
     }
     
     // MARK: - Private Functions

@@ -17,6 +17,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var clienteCodice: String?
     
     var idSelezionato: String?
+    var riferimentoSelezionato: String?
     
     var dataTask: URLSessionDataTask?
     var searchResults = OrdiniElencoResult()
@@ -32,8 +33,6 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.register(cellNib, forCellReuseIdentifier: "LoadingCell")
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
-        
-        navigationController?.setToolbarHidden(true, animated: false)
         
         performSearch()
     }
@@ -90,6 +89,8 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.quantita.attributedText = referenze
             cell.totale.attributedText = totale
             
+            cell.tintColor = blueSM
+            
             return cell
         }
     }
@@ -97,6 +98,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         idSelezionato = searchResults.results[indexPath.row].id
+        riferimentoSelezionato = searchResults.results[indexPath.row].riferimentoCliente
         
         self.performSegue(withIdentifier: "righeOrdine", sender: self)
     }
@@ -109,6 +111,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let destinationViewController = segue.destination as! RigheOrdineVC
             if let idSelezionato = idSelezionato {
                 destinationViewController.idOrdine = idSelezionato
+                destinationViewController.riferimento = riferimentoSelezionato
             }
             
             // il backbutton appartiene sempre al view controller precedente
@@ -119,10 +122,11 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        navigationController?.setToolbarHidden(true, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = clienteCodice?.lowercased().capitalizingFirstLetter()
+        navigationController?.setToolbarHidden(true, animated: false)
     }
-    
+   
     //MARK:- Private functions
     private func parse(data: Data) -> OrdiniElencoResult? {
         do {
