@@ -1,5 +1,5 @@
 //
-//  SearchResultCell.swift
+//  TotaleOrdiniCell.swift
 //  b2b
 //
 //  Created by if65 on 27/09/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultCell: UITableViewCell {
+class TotaleOrdiniCell: UITableViewCell {
     
     @IBOutlet weak var cliente: UILabel!
     @IBOutlet weak var totale: UILabel!

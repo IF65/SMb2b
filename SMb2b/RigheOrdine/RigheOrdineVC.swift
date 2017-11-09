@@ -20,8 +20,10 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var cellNib = UINib(nibName: "LoadingCell", bundle: nil)
+      
+        var cellNib = UINib(nibName: "RigheOrdineCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "RigheOrdineCell")
+        cellNib = UINib(nibName: "LoadingCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "LoadingCell")
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
@@ -51,7 +53,7 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RigaOrdineCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RigheOrdineCell", for: indexPath) as! RigheOrdineCell
             
             /*cell.riferimento.text = searchResults.results[indexPath.row].riferimentoCliente
             let data = searchResults.results[indexPath.row].data[...searchResults.results[indexPath.row].data.index(searchResults.results[indexPath.row].data.startIndex, offsetBy: 9)]
@@ -64,17 +66,26 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 tipo = "Drop Ship."
             }
             cell.descrizione.text = "Ord. nr.\(searchResults.results[indexPath.row].numero) del \(data) di tipo \(tipo)"
-            
-            let currencyFormatter = NumberFormatter()
-            currencyFormatter.usesGroupingSeparator = true
-            currencyFormatter.numberStyle = NumberFormatter.Style.decimal
-            currencyFormatter.minimumFractionDigits = 0
-            currencyFormatter.maximumFractionDigits = 0
-            currencyFormatter.locale = NSLocale.current
-            cell.totale.text = currencyFormatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!
             */
             
-            cell.textLabel?.text = searchResults.results[indexPath.row].codiceArticoloGCC
+            let formatter = NumberFormatter()
+            formatter.usesGroupingSeparator = true
+            formatter.numberStyle = NumberFormatter.Style.decimal
+            formatter.locale = NSLocale.current
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 0
+            
+            let myAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
+            let pezzi = NSMutableAttributedString(string: "q.tà ", attributes: myAttributes)
+            pezzi.append(NSMutableAttributedString(string: formatter.string(from: searchResults.results[indexPath.row].quantita as NSNumber)!))
+            let totale = NSMutableAttributedString(string: "€ ", attributes: myAttributes)
+            totale.append(NSMutableAttributedString(string: formatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!))
+            
+            cell.codiceGcc?.text = searchResults.results[indexPath.row].codiceArticoloGCC
+            cell.descrizione?.text = searchResults.results[indexPath.row].descrizione.lowercased().capitalizingFirstLetter()
+            cell.quantita?.attributedText = pezzi
+            cell.totale?.attributedText = totale
+            
             return cell
         }
     }

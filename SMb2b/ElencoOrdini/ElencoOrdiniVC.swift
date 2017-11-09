@@ -103,8 +103,9 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // il backbutton appartiene sempre al view controller precedente
             let backBarButtonItem = UIBarButtonItem()
-            backBarButtonItem.title = "Indietro"
+            backBarButtonItem.title = ""
             navigationItem.backBarButtonItem = backBarButtonItem
+            navigationItem.backBarButtonItem?.tintColor = blueSM
         }
     }
     
