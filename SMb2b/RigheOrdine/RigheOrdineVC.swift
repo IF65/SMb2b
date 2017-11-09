@@ -55,19 +55,6 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RigheOrdineCell", for: indexPath) as! RigheOrdineCell
             
-            /*cell.riferimento.text = searchResults.results[indexPath.row].riferimentoCliente
-            let data = searchResults.results[indexPath.row].data[...searchResults.results[indexPath.row].data.index(searchResults.results[indexPath.row].data.startIndex, offsetBy: 9)]
-            
-            var tipo = ""
-            switch searchResults.results[indexPath.row].tipo {
-            case 0 : tipo = "Giornaliero"
-            case 1 : tipo = "Stock"
-            default:
-                tipo = "Drop Ship."
-            }
-            cell.descrizione.text = "Ord. nr.\(searchResults.results[indexPath.row].numero) del \(data) di tipo \(tipo)"
-            */
-            
             let formatter = NumberFormatter()
             formatter.usesGroupingSeparator = true
             formatter.numberStyle = NumberFormatter.Style.decimal
@@ -81,8 +68,11 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let totale = NSMutableAttributedString(string: "€ ", attributes: myAttributes)
             totale.append(NSMutableAttributedString(string: formatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!))
             
-            cell.codiceGcc?.text = searchResults.results[indexPath.row].codiceArticoloGCC
-            cell.descrizione?.text = searchResults.results[indexPath.row].descrizione.lowercased().capitalizingFirstLetter()
+            let codice = NSMutableAttributedString(string: searchResults.results[indexPath.row].codiceArticoloGCC)
+            codice.append(NSMutableAttributedString(string: " ("+searchResults.results[indexPath.row].codiceArticolo+")", attributes: myAttributes))
+            cell.codiceGcc?.attributedText = codice
+            cell.descrizione?.text = searchResults.results[indexPath.row].descrizione.lowercased().capitalizingFirstLetter()+", mod."+searchResults.results[indexPath.row].modello+", "+searchResults.results[indexPath.row].marchio
+
             cell.quantita?.attributedText = pezzi
             cell.totale?.attributedText = totale
             
@@ -90,7 +80,9 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    
+    override func viewWillLayoutSubviews() {
+        navigationController?.setToolbarHidden(true, animated: true)
+    }
     
     // MARK: - Private Functions
     private func parse(data: Data) -> OrdineRigheResult? {

@@ -12,14 +12,14 @@ class TotaleOrdiniCell: UITableViewCell {
     
     @IBOutlet weak var cliente: UILabel!
     @IBOutlet weak var totale: UILabel!
-    @IBOutlet weak var descrizione: UILabel!
+    @IBOutlet weak var ordiniCount: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         cliente.textColor = blueSM
         totale.textColor = blueSM
-        descrizione.textColor = blueSM
+        ordiniCount.textColor = blueSM
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

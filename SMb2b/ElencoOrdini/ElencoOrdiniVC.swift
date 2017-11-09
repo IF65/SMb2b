@@ -33,6 +33,8 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
         
+        navigationController?.setToolbarHidden(true, animated: false)
+        
         performSearch()
     }
     
@@ -72,13 +74,21 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             cell.descrizione.text = "Ord. nr.\(searchResults.results[indexPath.row].numero) del \(data) di tipo \(tipo)"
             
-            let currencyFormatter = NumberFormatter()
-            currencyFormatter.usesGroupingSeparator = true
-            currencyFormatter.numberStyle = NumberFormatter.Style.decimal
-            currencyFormatter.minimumFractionDigits = 0
-            currencyFormatter.maximumFractionDigits = 0
-            currencyFormatter.locale = NSLocale.current
-            cell.totale.text = currencyFormatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!
+            let formatter = NumberFormatter()
+            formatter.usesGroupingSeparator = true
+            formatter.numberStyle = NumberFormatter.Style.decimal
+            formatter.locale = NSLocale.current
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 0
+            
+            let myAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]
+            let referenze = NSMutableAttributedString(string: "ref. ", attributes: myAttributes)
+            referenze.append(NSMutableAttributedString(string: formatter.string(from: searchResults.results[indexPath.row].numeroReferenze as NSNumber)!))
+            let totale = NSMutableAttributedString(string: "€ ", attributes: myAttributes)
+            totale.append(NSMutableAttributedString(string: formatter.string(from: searchResults.results[indexPath.row].totale as NSNumber)!))
+            
+            cell.quantita.attributedText = referenze
+            cell.totale.attributedText = totale
             
             return cell
         }
@@ -107,6 +117,10 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             navigationItem.backBarButtonItem = backBarButtonItem
             navigationItem.backBarButtonItem?.tintColor = blueSM
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     //MARK:- Private functions

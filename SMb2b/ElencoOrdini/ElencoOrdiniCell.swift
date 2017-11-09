@@ -12,6 +12,7 @@ class ElencoOrdiniCell: UITableViewCell {
     
     @IBOutlet weak var riferimento: UILabel!
     @IBOutlet weak var descrizione: UILabel!
+    @IBOutlet weak var quantita:UILabel!
     @IBOutlet weak var totale: UILabel!
 
     override func awakeFromNib() {
@@ -19,6 +20,7 @@ class ElencoOrdiniCell: UITableViewCell {
         
         riferimento.textColor = blueSM
         descrizione.textColor = blueSM
+        quantita.textColor = blueSM
         totale.textColor = blueSM
     }
 
