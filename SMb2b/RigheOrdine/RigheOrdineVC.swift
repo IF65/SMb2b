@@ -12,7 +12,9 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     
     var idOrdine: String?
+    var codiceCliente: String?
     var riferimento: String?
+    var rigaSelezionata: OrdineRighe?
     
     var dataTask: URLSessionDataTask?
     var searchResults = OrdineRigheResult()
@@ -35,6 +37,12 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        rigaSelezionata = searchResults.results[indexPath.row]
+        performSegue(withIdentifier: "dettaglioArticolo", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,6 +94,11 @@ class RigheOrdineVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = riferimento
         navigationController?.setToolbarHidden(true, animated: false)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as! DettaglioArticoloVC
+        destinationViewController.codiceArticolo = rigaSelezionata?.codiceArticoloGCC
     }
     
     // MARK: - Private Functions

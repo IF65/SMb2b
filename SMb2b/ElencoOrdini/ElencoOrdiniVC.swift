@@ -14,7 +14,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var dataInizio: Date?
     var dataFine: Date?
-    var clienteCodice: String?
+    var codiceCliente: String?
     
     var idSelezionato: String?
     var riferimentoSelezionato: String?
@@ -111,6 +111,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let destinationViewController = segue.destination as! RigheOrdineVC
             if let idSelezionato = idSelezionato {
                 destinationViewController.idOrdine = idSelezionato
+                destinationViewController.codiceCliente = codiceCliente
                 destinationViewController.riferimento = riferimentoSelezionato
             }
             
@@ -123,7 +124,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationItem.title = clienteCodice?.lowercased().capitalizingFirstLetter()
+        navigationItem.title = codiceCliente?.lowercased().capitalizingFirstLetter()
         navigationController?.setToolbarHidden(true, animated: false)
     }
    
@@ -185,7 +186,7 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         do {
             var elencoOrdiniRequest = OrdiniElencoRequest()
-            if let clienteCodice = clienteCodice {
+            if let clienteCodice = codiceCliente {
                 elencoOrdiniRequest.codiceCliente = clienteCodice
             }
             elencoOrdiniRequest.dallaData = dateToString(dataInizio, nil)
@@ -208,7 +209,9 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } else if let response = response as? HTTPURLResponse,
                     response.statusCode == 200 {
                     if let data = data {
-                        self.searchResults = self.parse(data: data)!
+                        if let results = self.parse(data: data) {
+                            self.searchResults = results
+                        }
                         
                         DispatchQueue.main.async {
                             self.isLoading = false

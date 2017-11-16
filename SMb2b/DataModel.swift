@@ -433,3 +433,47 @@ struct OrdineRighe:Codable {
     var ddtNumero: String = ""
     var ddtData: String = ""
 }
+
+//MARK:- Dettaglio articolo
+struct DettaglioArticoloRequest:Codable {
+    var functionName: String = ""
+    var codiceArticolo: String = ""
+}
+
+struct DettaglioArticoloResult:Codable {
+    var resultCount = 0
+    var results = [DettaglioArticolo]()
+}
+
+struct DettaglioArticolo:Codable {
+    var idTime: String = ""
+    var codice: String = ""
+    var modello: String = ""
+    var descrizione: String = ""
+    var giacenza: Int = 0
+    var inOrdine: Int = 0
+    var prezzoAcquisto: Double = 0.0
+    var prezzoRiordino: Double = 0.0
+    var prezzoVendita: Double = 0.0
+    var aliquotaIva: Double = 0.0
+    var novita: Bool = false
+    var eliminato: Bool = false
+    var esclusiva: Bool = false
+    var barcode: String = ""
+    var marchioCopre: String = ""
+    var griglia: String = ""
+    var grigliaObbligatorio: String = ""
+    var ediel01: String = ""
+    var ediel02: String = ""
+    var ediel03: String = ""
+    var ediel04: String = ""
+    var marchio: String = ""
+    var ricaricoPercentuale: Double = 0.0
+    var doppioNetto: Double = 0.0
+    var triploNetto: Double = 0.0
+    var nettoNetto: Double = 0.0
+    var ordinabile: Bool = false
+    var canale: Int = 0
+    var pndAC: Double = 0.0
+    var pndAP: Double = 0.0
+}
