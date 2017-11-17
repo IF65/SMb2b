@@ -13,11 +13,30 @@ class DettaglioArticoloVC: UITableViewController {
     var codiceArticolo: String?
     
     @IBOutlet weak var descrizione: UILabel?
-    @IBOutlet weak var costo: UILabel?
-    
-    /*@IBOutlet weak var descrizione: UILabel?
+    @IBOutlet weak var codiceGcc: UILabel?
+    @IBOutlet weak var codiceSm: UILabel?
     @IBOutlet weak var modello: UILabel?
-    @IBOutlet weak var marchio: UILabel?*/
+    @IBOutlet weak var giacenza: UILabel?
+    @IBOutlet weak var inOrdine: UILabel?
+    @IBOutlet weak var prezzoAcquisto: UILabel?
+    @IBOutlet weak var prezzoRiordino: UILabel?
+    @IBOutlet weak var prezzoVendita: UILabel?
+    @IBOutlet weak var aliquotaIva: UILabel?
+    @IBOutlet weak var novita: UILabel?
+    @IBOutlet weak var eliminato: UILabel?
+    @IBOutlet weak var esclusiva: UILabel?
+    @IBOutlet weak var barcode: UILabel?
+    @IBOutlet weak var marchioCopre: UILabel?
+    @IBOutlet weak var ediel: UILabel?
+    @IBOutlet weak var ricaricoPercentuale: UILabel?
+    @IBOutlet weak var marchio: UILabel?
+    @IBOutlet weak var doppioNetto: UILabel?
+    @IBOutlet weak var triploNetto: UILabel?
+    @IBOutlet weak var nettoNetto: UILabel?
+    @IBOutlet weak var ordinabile: UILabel?
+    @IBOutlet weak var canale: UILabel?
+    @IBOutlet weak var pndAC: UILabel?
+    @IBOutlet weak var pndAP: UILabel?
     
     var dataTask: URLSessionDataTask?
     var searchResults = DettaglioArticoloResult()
@@ -26,13 +45,32 @@ class DettaglioArticoloVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        UILabel.appearance().textColor = blueSM
+        
+        descrizione?.alpha = alphaSM
+        codiceGcc?.alpha = alphaSM
+        codiceSm?.alpha = alphaSM
+        modello?.alpha = alphaSM
+        giacenza?.alpha = alphaSM
+        inOrdine?.alpha = alphaSM
+        prezzoAcquisto?.alpha = alphaSM
+        prezzoRiordino?.alpha = alphaSM
+        prezzoVendita?.alpha = alphaSM
+        aliquotaIva?.alpha = alphaSM
+        novita?.alpha = alphaSM
+        eliminato?.alpha = alphaSM
+        esclusiva?.alpha = alphaSM
+        barcode?.alpha = alphaSM
+        marchioCopre?.alpha = alphaSM
+        ediel?.alpha = alphaSM
+        marchio?.alpha = alphaSM
+        ricaricoPercentuale?.alpha = alphaSM
+        doppioNetto?.alpha = alphaSM
+        triploNetto?.alpha = alphaSM
+        nettoNetto?.alpha = alphaSM
+        ordinabile?.alpha = alphaSM
+        canale?.alpha = alphaSM
+        pndAC?.alpha = alphaSM
+        pndAP?.alpha = alphaSM
         
         reloadData()
         performSearch()
@@ -44,6 +82,13 @@ class DettaglioArticoloVC: UITableViewController {
     }
     
     // MARK: - Private Functions
+    private func showNetworkError() {
+        let alert = UIAlertController(title: "Errore di rete...", message: "C'è stato un errore nel tentativo di accesso al server b2b di Supermedia S.p.A. . Riprova.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
     private func parse(data: Data) -> DettaglioArticoloResult? {
         do {
             let decoder = JSONDecoder()
@@ -56,62 +101,6 @@ class DettaglioArticoloVC: UITableViewController {
         }
     }
     
-    private func showNetworkError() {
-        let alert = UIAlertController(title: "Errore di rete...", message: "C'è stato un errore nel tentativo di accesso al server b2b di Supermedia S.p.A. . Riprova.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func stringToDate(_ dateString:String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd" //Your date format
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Current time zone
-        
-        guard let returnDate = dateFormatter.date(from: dateString) else {return nil}
-        
-        return returnDate
-    }
-    
-    private func dateToString(_ date:Date?, _ format: String?) -> String {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat =  "yyyy-MM-dd"
-        if let format = format {
-            dateFormatter.dateFormat = format
-        }
-        
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Current time zone
-        if let date = date {
-            return dateFormatter.string(from:  date)
-        }
-        
-        return ""
-    }
-    
-    private func reloadData() {
-        // sezione descrizione
-        descrizione?.text = ""
-        
-        // sezione importi
-        costo?.text = ""
-        if searchResults.results.count == 1 {
-            let numberFormatter = NumberFormatter()
-            
-            // sezione descrizione
-            let descrizioneArticolo = searchResults.results[0].descrizione.lowercased().capitalizingFirstLetter()
-            let modello = searchResults.results[0].modello
-            let marchio = searchResults.results[0].marchio
-            descrizione?.text = "\(descrizioneArticolo)\nmodello:\(modello)\nmarchio:\(marchio)"
-            
-            // sezione importi
-            numberFormatter.numberStyle = .currency
-            numberFormatter.maximumFractionDigits = 2
-            numberFormatter.locale = Locale(identifier: Locale.current.identifier)
-            costo?.text = numberFormatter.string(from: searchResults.results[0].prezzoAcquisto as NSNumber)
-        }
-    }
-    
     private func performSearch() {
         dataTask?.cancel()
         hasSearched = true
@@ -121,7 +110,7 @@ class DettaglioArticoloVC: UITableViewController {
         
         searchResults.results = []
         
-        let url = URL(string: "http://10.11.14.78/copre/copre2.php")
+        let url = URL(string: itmUrl)
         
         do {
             var dettaglioArticoloRequest = DettaglioArticoloRequest()
@@ -176,86 +165,75 @@ class DettaglioArticoloVC: UITableViewController {
             print("JSON Error \(error)")
         }
     }
-
-    // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    
+    private func reloadData() {
+        codiceGcc?.text = ""
+        codiceSm?.text = ""
+        descrizione?.text = ""
+        giacenza?.text = ""
+        inOrdine?.text = ""
+        prezzoAcquisto?.text = ""
+        prezzoRiordino?.text = ""
+        prezzoVendita?.text = ""
+        aliquotaIva?.text = ""
+        novita?.text = ""
+        eliminato?.text = ""
+        esclusiva?.text = ""
+        barcode?.text = ""
+        marchioCopre?.text = ""
+        ediel?.text = ""
+        ricaricoPercentuale?.text = ""
+        doppioNetto?.text = ""
+        triploNetto?.text = ""
+        nettoNetto?.text = ""
+        ordinabile?.text = ""
+        canale?.text = ""
+        pndAC?.text = ""
+        pndAP?.text = ""
         
-        let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(rawValue: 2.0))//UIFont(name: "System", size: 14)
-        header?.textLabel?.textColor = blueSM
-        header?.textLabel?.text = header?.textLabel?.text?.lowercased().capitalizingFirstLetter()
-    }
-
-    /*override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }*/
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension UILabel{
-    var defaultColor: UIColor? {
-        get { return self.textColor }
-        set { self.textColor = newValue }
+        // sezione importi
+        prezzoVendita?.text = ""
+        if searchResults.results.count == 1 {
+            let result = searchResults.results[0]
+            
+            let numberFormatter = NumberFormatter()
+            
+            let descrizioneArticolo = searchResults.results[0].descrizione.lowercased().capitalizingFirstLetter()
+            let modello = searchResults.results[0].modello
+            let marchio = searchResults.results[0].marchio
+            descrizione?.text = "\(descrizioneArticolo)\n\nmodello: \(modello)\nmarchio: \(marchio)"
+            
+            numberFormatter.numberStyle = .currency
+            numberFormatter.maximumFractionDigits = 2
+            numberFormatter.locale = Locale(identifier: Locale.current.identifier)
+            nettoNetto?.text = numberFormatter.string(from: result.nettoNetto as NSNumber)
+            doppioNetto?.text = numberFormatter.string(from: result.doppioNetto as NSNumber)
+            prezzoAcquisto?.text = numberFormatter.string(from: result.prezzoAcquisto as NSNumber)
+            
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.maximumFractionDigits = 0
+            giacenza?.text = numberFormatter.string(from: result.giacenza as NSNumber)
+            inOrdine?.text = numberFormatter.string(from: result.inOrdine as NSNumber)
+            
+            codiceGcc?.text = result.codice
+            codiceSm?.text = "0123456"
+            prezzoRiordino?.text = ""
+            prezzoVendita?.text = ""
+            aliquotaIva?.text = ""
+            novita?.text = ""
+            eliminato?.text = ""
+            esclusiva?.text = ""
+            barcode?.text = result.barcode
+            marchioCopre?.text = ""
+            ediel?.text = result.ediel01+"."+result.ediel02+"."+result.ediel03+"."+result.ediel04
+            ricaricoPercentuale?.text = ""
+            triploNetto?.text = ""
+            ordinabile?.text = ""
+            canale?.text = String(searchResults.results[0].canale)
+            pndAC?.text = ""
+            pndAP?.text = ""
+            
+            
+        }
     }
 }

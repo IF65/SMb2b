@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //navigationBarAppearace.barTintColor = UIColor.white
         navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor:blueSM]
         
+        // colore di default di tutte le label
+        UILabel.appearance().textColor = blueSM
+        
         Thread.sleep(forTimeInterval: 1.0)
         
         return true
@@ -53,4 +56,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
+
 

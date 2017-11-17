@@ -9,6 +9,17 @@
 import Foundation
 import UIKit
 
+// parametri
+public let itmUrl: String = "http://10.11.14.78/copre/copre2.php"
+public let smUrl: String = "http://11.0.1.31:8080/b2b"
+
+public let alphaSM: CGFloat = 1.0
+
+public let blueSM = UIColor(red: 0.0, green: 85/255, blue: 145/255, alpha: 1)
+public let purpleSM = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha: 1)
+public let darkGreen = UIColor(red: 0, green: 102/255, blue: 51/255, alpha: 1)
+public let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 1.0)
+
 // dati
 var clienti = [Cliente]()
 var periodo =  ElencoDate()
@@ -32,6 +43,32 @@ func compare(Data1 date1:Date, Data2 date2:Date) -> Int {
     } else {
         return 1
     }
+}
+
+func stringToDate(_ dateString:String) -> Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd" //Your date format
+    dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Current time zone
+    
+    guard let returnDate = dateFormatter.date(from: dateString) else {return nil}
+    
+    return returnDate
+}
+
+func dateToString(_ date:Date?, _ format: String?) -> String {
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.dateFormat =  "yyyy-MM-dd"
+    if let format = format {
+        dateFormatter.dateFormat = format
+    }
+    
+    dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Current time zone
+    if let date = date {
+        return dateFormatter.string(from:  date)
+    }
+    
+    return ""
 }
 
 class MenuElement {
