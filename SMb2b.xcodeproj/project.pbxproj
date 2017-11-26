@@ -22,7 +22,6 @@
 		9CE4F9241F9D3FF000C731FB /* TotaleOrdiniCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4F9231F9D3FF000C731FB /* TotaleOrdiniCell.swift */; };
 		9CE4F9261F9D409800C731FB /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4F9251F9D409800C731FB /* NothingFoundCell.xib */; };
 		9CE4F9281F9D40A700C731FB /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4F9271F9D40A700C731FB /* LoadingCell.xib */; };
-		C12DEC1B2856ED2FFE691B25 /* Pods_SMb2b.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6297F4C43DFE2390076E959 /* Pods_SMb2b.framework */; };
 		C951299E1FB2FD2E00867B00 /* ElencoOrdiniCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C951299D1FB2FD2E00867B00 /* ElencoOrdiniCell.xib */; };
 		C95129A01FB2FD6400867B00 /* ElencoOrdiniCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C951299F1FB2FD6400867B00 /* ElencoOrdiniCell.swift */; };
 		C979DEA31FB3382300BCD1AB /* TotaleOrdiniVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979DEA21FB3382300BCD1AB /* TotaleOrdiniVC.swift */; };
@@ -67,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C12DEC1B2856ED2FFE691B25 /* Pods_SMb2b.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,12 +200,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CAC06AD1F97DB0400605105 /* Build configuration list for PBXNativeTarget "SMb2b" */;
 			buildPhases = (
-				6748A89A86BC06D501B8B7BC /* [CP] Check Pods Manifest.lock */,
 				9CAC06971F97DB0400605105 /* Sources */,
 				9CAC06981F97DB0400605105 /* Frameworks */,
 				9CAC06991F97DB0400605105 /* Resources */,
-				23CF574033CB6731FE3E48F5 /* [CP] Embed Pods Frameworks */,
-				4B586715A6A98C04C99B32A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,60 +264,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		23CF574033CB6731FE3E48F5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SMb2b/Pods-SMb2b-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMb2b/Pods-SMb2b-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4B586715A6A98C04C99B32A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMb2b/Pods-SMb2b-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6748A89A86BC06D501B8B7BC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SMb2b-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9CAC06971F97DB0400605105 /* Sources */ = {
