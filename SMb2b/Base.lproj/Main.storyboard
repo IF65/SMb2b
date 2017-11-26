@@ -392,6 +392,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
+                        <barButtonItem title="Item" image="455-euros2" id="gg7-6l-evl">
+                            <color key="tintColor" red="0.0" green="0.33333333329999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zNm-0q-ojl"/>
                         <barButtonItem image="666-gear2" style="plain" id="BWd-3f-H9V">
                             <color key="tintColor" red="0.0" green="0.33333333329999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -885,6 +889,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="455-euros2" width="28" height="28"/>
         <image name="666-gear2" width="28" height="28"/>
         <image name="calendar" width="26" height="28"/>
         <image name="lavatrice" width="190" height="190"/>
