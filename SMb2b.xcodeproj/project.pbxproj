@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C029EDF1FBBAE0F00E84A54 /* DettaglioArticoloVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C029EDE1FBBAE0F00E84A54 /* DettaglioArticoloVC.swift */; };
 		9C24832D1FAAEBA100095605 /* NothingFoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24832C1FAAEBA100095605 /* NothingFoundCell.swift */; };
+		9C3532F91FCB64BD0082A020 /* IncassiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3532F81FCB64BD0082A020 /* IncassiVC.swift */; };
 		9C4501CB1FA64E1300DD563C /* CalendarWeakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4501CA1FA64E1300DD563C /* CalendarWeakCell.swift */; };
 		9C8C6B0C1FB39B6E00DC9C4F /* RigheOrdineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C8C6B0B1FB39B6E00DC9C4F /* RigheOrdineCell.xib */; };
 		9C8C6B0E1FB39C3600DC9C4F /* RigheOrdineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8C6B0D1FB39C3600DC9C4F /* RigheOrdineCell.swift */; };
@@ -35,6 +36,7 @@
 		55CA7B8F41DBDDDBC2617B68 /* Pods-SMb2b.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMb2b.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMb2b/Pods-SMb2b.release.xcconfig"; sourceTree = "<group>"; };
 		9C029EDE1FBBAE0F00E84A54 /* DettaglioArticoloVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DettaglioArticoloVC.swift; sourceTree = "<group>"; };
 		9C24832C1FAAEBA100095605 /* NothingFoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFoundCell.swift; sourceTree = "<group>"; };
+		9C3532F81FCB64BD0082A020 /* IncassiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncassiVC.swift; sourceTree = "<group>"; };
 		9C4501CA1FA64E1300DD563C /* CalendarWeakCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeakCell.swift; sourceTree = "<group>"; };
 		9C8C6B0B1FB39B6E00DC9C4F /* RigheOrdineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RigheOrdineCell.xib; sourceTree = "<group>"; };
 		9C8C6B0D1FB39C3600DC9C4F /* RigheOrdineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RigheOrdineCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 			path = Calendario;
 			sourceTree = "<group>";
 		};
+		9C3532FA1FCB64C90082A020 /* Incassi */ = {
+			isa = PBXGroup;
+			children = (
+				9C3532F81FCB64BD0082A020 /* IncassiVC.swift */,
+			);
+			path = Incassi;
+			sourceTree = "<group>";
+		};
 		9CAC06921F97DB0400605105 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9CAC069E1F97DB0400605105 /* AppDelegate.swift */,
+				9CE9F0B21FB3985C00A42249 /* celleGeneriche */,
 				9CC66A361FCB2C1700DC6CB0 /* Ordini B2B */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
 				9CAC06A51F97DB0400605105 /* Assets.xcassets */,
@@ -124,11 +135,11 @@
 		9CC66A361FCB2C1700DC6CB0 /* Ordini B2B */ = {
 			isa = PBXGroup;
 			children = (
-				9CE9F0B21FB3985C00A42249 /* celleGeneriche */,
 				C96EEB071FB336D900FE07F1 /* TotaleOrdini */,
 				C95129A11FB2FDBE00867B00 /* ElencoOrdini */,
 				C979DEA61FB33E4900BCD1AB /* RigheOrdine */,
 				C98854361FBB600B0080BFD6 /* DettaglioArticolo */,
+				9C3532FA1FCB64C90082A020 /* Incassi */,
 			);
 			path = "Ordini B2B";
 			sourceTree = "<group>";
@@ -276,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B1C1A31F9F611D000FAEC7 /* ElencoOrdiniVC.swift in Sources */,
+				9C3532F91FCB64BD0082A020 /* IncassiVC.swift in Sources */,
 				9C029EDF1FBBAE0F00E84A54 /* DettaglioArticoloVC.swift in Sources */,
 				9C8C6B0E1FB39C3600DC9C4F /* RigheOrdineCell.swift in Sources */,
 				C979DEA31FB3382300BCD1AB /* TotaleOrdiniVC.swift in Sources */,

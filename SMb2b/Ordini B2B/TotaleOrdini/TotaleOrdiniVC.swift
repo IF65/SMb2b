@@ -44,6 +44,11 @@ class TotaleOrdiniVC: UIViewController {
     @IBAction func menuOpen(_ sender: Any) {
 
     }
+    
+    // dati * ordini
+    var clienti = [Cliente]()
+    var periodo =  ElencoDate()
+    
     // calendario
     var tipoCalendario: TipoCalendario = .giorno
     
@@ -56,8 +61,6 @@ class TotaleOrdiniVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         clienti.append(Cliente(codice: "EPRICE", descrizione: "ePrice"))
         clienti.append(Cliente(codice: "ONLINESTORE", descrizione: "Online Store"))
@@ -126,7 +129,7 @@ class TotaleOrdiniVC: UIViewController {
         coordinator.animateAlongsideTransition(in: nil, animation: nil) {
             (context) -> Void in
             
-            if let index = periodo.getSelectedIndex(Per: self.tipoCalendario) {
+            if let index = self.periodo.getSelectedIndex(Per: self.tipoCalendario) {
                 self.topCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
             }
             
@@ -333,7 +336,7 @@ extension TotaleOrdiniVC: UICollectionViewDataSource, UICollectionViewDelegate {
                             self.totale.text = currencyFormatter.string(from: totale as NSNumber)!
                             self.isLoading = false
                             
-                            self.topCollectionView.scrollToItem(at: IndexPath(item: periodo.getSelectedIndex(Per: self.tipoCalendario)!, section: 0), at: .centeredHorizontally, animated: true)
+                            self.topCollectionView.scrollToItem(at: IndexPath(item: self.periodo.getSelectedIndex(Per: self.tipoCalendario)!, section: 0), at: .centeredHorizontally, animated: true)
                             self.tableView.reloadData()
                         }
                         return
@@ -346,7 +349,7 @@ extension TotaleOrdiniVC: UICollectionViewDataSource, UICollectionViewDelegate {
                 DispatchQueue.main.async {
                     self.hasSearched = false
                     self.isLoading = false
-                    self.topCollectionView.scrollToItem(at: IndexPath(item: periodo.getSelectedIndex(Per: self.tipoCalendario)!, section: 0), at: .centeredHorizontally, animated: true)
+                    self.topCollectionView.scrollToItem(at: IndexPath(item: self.periodo.getSelectedIndex(Per: self.tipoCalendario)!, section: 0), at: .centeredHorizontally, animated: true)
                     self.tableView.reloadData()
                     self.showNetworkError()
                 }

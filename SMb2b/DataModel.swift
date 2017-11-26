@@ -20,10 +20,10 @@ public let purpleSM = UIColor(red: 246/255, green: 21/255, blue: 147/255, alpha:
 public let darkGreen = UIColor(red: 0, green: 102/255, blue: 51/255, alpha: 1)
 public let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 1.0)
 
-// dati
-var clienti = [Cliente]()
+// dati * ordini
+/*var clienti = [Cliente]()
 var periodo =  ElencoDate()
-var slideMenu = [MenuElement]()
+var slideMenu = [MenuElement]()*/
 
 enum TipoCalendario {
     case giorno

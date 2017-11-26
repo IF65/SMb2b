@@ -15,11 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        slideMenu.append(MenuElement(Id: 0, Descrizione: "B2B"))
-        slideMenu.append(MenuElement(Id: 10, Descrizione: "Incassi T.R."))
-        slideMenu.append(MenuElement(Id: 20, Descrizione: "Caricamento DC"))
-        
+
         // change navigation item title color
         let navigationBarAppearace = UINavigationBar.appearance()
         //navigationBarAppearace.tintColor = UIColor.blue
