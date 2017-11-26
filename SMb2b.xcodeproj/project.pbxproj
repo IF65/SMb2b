@@ -27,7 +27,6 @@
 		C979DEA31FB3382300BCD1AB /* TotaleOrdiniVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979DEA21FB3382300BCD1AB /* TotaleOrdiniVC.swift */; };
 		C979DEA81FB33E8A00BCD1AB /* RigheOrdineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979DEA71FB33E8A00BCD1AB /* RigheOrdineVC.swift */; };
 		C9B1C1A31F9F611D000FAEC7 /* ElencoOrdiniVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B1C1A21F9F611D000FAEC7 /* ElencoOrdiniVC.swift */; };
-		C9C77E881FAE226400AAD49E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C77E871FAE226400AAD49E /* MenuViewController.swift */; };
 		C9DD75411FA7D5260072E798 /* CalendarMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD75401FA7D5260072E798 /* CalendarMonthCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		C979DEA21FB3382300BCD1AB /* TotaleOrdiniVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotaleOrdiniVC.swift; sourceTree = "<group>"; };
 		C979DEA71FB33E8A00BCD1AB /* RigheOrdineVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RigheOrdineVC.swift; sourceTree = "<group>"; };
 		C9B1C1A21F9F611D000FAEC7 /* ElencoOrdiniVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElencoOrdiniVC.swift; sourceTree = "<group>"; };
-		C9C77E871FAE226400AAD49E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C9DD75401FA7D5260072E798 /* CalendarMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthCell.swift; sourceTree = "<group>"; };
 		D6297F4C43DFE2390076E959 /* Pods_SMb2b.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMb2b.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,7 +116,6 @@
 				C95129A11FB2FDBE00867B00 /* ElencoOrdini */,
 				C979DEA61FB33E4900BCD1AB /* RigheOrdine */,
 				C98854361FBB600B0080BFD6 /* DettaglioArticolo */,
-				C9C77E871FAE226400AAD49E /* MenuViewController.swift */,
 				9CAC06A21F97DB0400605105 /* Main.storyboard */,
 				9CAC06A51F97DB0400605105 /* Assets.xcassets */,
 				9CAC06A71F97DB0400605105 /* LaunchScreen.storyboard */,
@@ -273,7 +270,6 @@
 				C9B1C1A31F9F611D000FAEC7 /* ElencoOrdiniVC.swift in Sources */,
 				9C029EDF1FBBAE0F00E84A54 /* DettaglioArticoloVC.swift in Sources */,
 				9C8C6B0E1FB39C3600DC9C4F /* RigheOrdineCell.swift in Sources */,
-				C9C77E881FAE226400AAD49E /* MenuViewController.swift in Sources */,
 				C979DEA31FB3382300BCD1AB /* TotaleOrdiniVC.swift in Sources */,
 				9CAC069F1F97DB0400605105 /* AppDelegate.swift in Sources */,
 				9CAC06B51F97F06B00605105 /* CalendarDayCell.swift in Sources */,
