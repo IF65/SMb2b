@@ -34,6 +34,8 @@ class ElencoOrdiniVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cellNib = UINib(nibName: "NothingFoundCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "NothingFoundCell")
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         performSearch()
     }
     
