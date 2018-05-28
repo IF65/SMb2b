@@ -25,6 +25,8 @@ public let sephia = UIColor(red: 250/255, green: 235/255, blue: 215/255, alpha: 
 var periodo =  ElencoDate()
 var slideMenu = [MenuElement]()*/
 
+let aree = ["Tutti i negozi","Brescia","Bergamo","Trony"]
+
 enum TipoCalendario {
     case giorno
     case settimana

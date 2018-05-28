@@ -8,9 +8,9 @@
 
 import UIKit
 
-class IncassiVC: UIViewController {
-    
+class IncassiVC: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var topCollectionView: UICollectionView!
+    @IBOutlet weak var testLabel: UILabel!
     
     @IBAction func cambiaTipoCalendario(_ sender: UIBarButtonItem) {
         
@@ -28,6 +28,7 @@ class IncassiVC: UIViewController {
         topCollectionView.reloadData()
     }
     
+    var testLabelValue: String = "Ciao"
     var tipoCalendario: TipoCalendario = .giorno
     
     // dati
@@ -35,11 +36,14 @@ class IncassiVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let logo = UIImage(named: "logoSM_T2.png")
         let imageView = UIImageView(image: logo)
         imageView.contentMode = .scaleAspectFit// set imageview's content mode
         self.navigationItem.titleView = imageView
+        
+        navigationItem.backBarButtonItem = splitViewController?.displayModeButtonItem
+        navigationItem.leftItemsSupplementBackButton = true
         
         topCollectionView.showsHorizontalScrollIndicator = false
         
@@ -55,6 +59,7 @@ class IncassiVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        testLabel.text = testLabelValue
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -70,7 +75,6 @@ class IncassiVC: UIViewController {
             return
         }
     }
-    
 
     /*
     // MARK: - Navigation
@@ -166,4 +170,39 @@ extension IncassiVC: UICollectionViewDataSource, UICollectionViewDelegate {
         
         collectionView.reloadData()
     }
+}
+
+extension IncassiVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width: Int
+        let height: Int
+        if tipoCalendario == .giorno {
+            width = 60
+            height = 60
+        } else if tipoCalendario == .settimana {
+            width = 120
+            height = 60
+        } else {
+            width = 120
+            height = 60
+        }
+        return CGSize(width: width, height: height)
+    }
+    
+    /* func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+     return CGFloat(0.0)
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+     return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+     return CGFloat(0)
+     }
+     
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
+     
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize*/
 }

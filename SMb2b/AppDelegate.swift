@@ -27,6 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Thread.sleep(forTimeInterval: 1.0)
         
+        /*let splitViewController = window!.rootViewController as! UISplitViewController
+        splitViewController.delegate = self as? UISplitViewControllerDelegate
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            splitViewController.preferredDisplayMode = .primaryOverlay
+        }*/
+        
         return true
     }
 
