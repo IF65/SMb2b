@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t1d-Mq-27d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t1d-Mq-27d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -716,7 +716,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLH-oS-usj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2565.5999999999999" y="1739.2803598200901"/>
+            <point key="canvasLocation" x="1921" y="1763"/>
         </scene>
         <!--Elenco OrdiniVC-->
         <scene sceneID="jvv-zs-xZH">
@@ -1235,7 +1235,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bak-t6-RVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566" y="898"/>
+            <point key="canvasLocation" x="1922" y="927"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xM5-N9-QdR">
@@ -1251,13 +1251,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ioZ-gb-EdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1534" y="897"/>
+            <point key="canvasLocation" x="1020" y="927"/>
         </scene>
-        <!--Item-->
+        <!--Incassi-->
         <scene sceneID="zI9-S4-8Tx">
             <objects>
                 <splitViewController storyboardIdentifier="splitViewController" id="c7B-O4-u8u" customClass="IncassiSVC" customModule="SMb2b" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="455-euros2" id="8yb-6J-bGK"/>
+                    <tabBarItem key="tabBarItem" title="Incassi" image="455-euros2" id="8yb-6J-bGK"/>
                     <connections>
                         <segue destination="wsd-Ym-jw9" kind="relationship" relationship="masterViewController" id="qzi-g9-wDl"/>
                         <segue destination="CaY-hk-dGI" kind="relationship" relationship="detailViewController" id="xkg-M0-MFo"/>
@@ -1265,7 +1265,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="go5-CD-Wkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="239" y="1163"/>
+            <point key="canvasLocation" x="78" y="1172"/>
         </scene>
         <!--Incassi-->
         <scene sceneID="u7s-sz-eWV">
@@ -1284,7 +1284,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1Z-Zg-RiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1535" y="1740"/>
+            <point key="canvasLocation" x="1020" y="1763"/>
         </scene>
         <!--Setup-->
         <scene sceneID="g09-NO-LGK">
@@ -1303,7 +1303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOf-PN-UqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1148" y="1837.3313343328336"/>
+            <point key="canvasLocation" x="-1454" y="2267"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lFz-gF-ok2">
@@ -1416,7 +1416,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcH-l6-jfe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-160.80000000000001" y="1836.4317841079462"/>
+            <point key="canvasLocation" x="-401" y="2266"/>
         </scene>
         <!--Articoli-->
         <scene sceneID="clO-w2-p95">
